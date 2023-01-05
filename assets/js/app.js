@@ -10,13 +10,14 @@ function displayMap() {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
+
+  // L.control.locate().addTo(map);
 }
 
 function getRouteData(startLocation, endLocation) {
   var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
   var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
-  var params = "&routeType=bicycle&travelMode=bike&traffic=true&avoid=motorway";
-  var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}`;
+  var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}&travelMode=bicycle&traffic=true&routeType=thrilling&hilliness=low`;
 
   // Retrieve the route data from TOMTOM
   $.get(calculateRouteURL)
@@ -36,7 +37,7 @@ function displayRoute(routeData) {
     return L.latLng(coordinate.latitude, coordinate.longitude);
   });
 
-  // Create a routeLine from the coordinates and add it to the map
+  // Create a route line from the coordinates and add it to the map
   routeLine = L.polyline(coordinates, { color: "blue" }).addTo(map);
 
   // Zoom the map to fit the routeLine
@@ -57,7 +58,7 @@ function init() {
 
   // Click event to draw routeLine on the map between a start and end location
   map.on("click", function (event) {
-    // If startLocation is already set, set the endLocation to the clicked location
+    // If start location is already set, set the end location to the clicked location
     if (!startLocation) {
       startLocation = event.latlng.lat + "," + event.latlng.lng;
     } else {
