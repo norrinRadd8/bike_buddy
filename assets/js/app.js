@@ -1,6 +1,10 @@
-function displayMap() {
-  var map = L.map("map").setView([51.505, -0.09], 13);
+// Global
+var map = L.map("map").setView([51.505, -0.09], 13);
+var startLocation;
+var endLocation;
+var routeLine;
 
+function displayMap() {
   // Add a tile layer to the map
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
@@ -8,33 +12,61 @@ function displayMap() {
   }).addTo(map);
 }
 
-// Retrieve route data
-function getData() {
+function getRouteData(startLocation, endLocation) {
   var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
-  var startLocation = "52.520008,13.404954";
-  var endLocation = "52.5200,13.404955";
   var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
-  var calculateRouteURL = baseURL + startLocation + ":" + endLocation + "/json?key=" + apiKey;
+  var params = "&routeType=bicycle&travelMode=bike&traffic=true&avoid=motorway";
+  var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}`;
 
-  // Params > "&routeType=bicycle&travelMode=bike&traffic=true&avoid=motorway"
-
-  // Retrieve the route data
-  $.get(calculateRouteURL).then(function (routeData) {
-    console.log(routeData);
-    displayRoutes(routeData);
-  });
+  // Retrieve the route data from TOMTOM
+  $.get(calculateRouteURL)
+    .then(function (routeData) {
+      // Pass route data to displayRoute()
+      displayRoute(routeData);
+    })
+    .catch(function (error) {
+      console.error("API ERROR", error);
+    });
 }
 
-function displayRoutes(routeData) {
+function displayRoute(routeData) {
   // Extract the coordinates from route data
-  var coordinates = routeData.routes[0].legs[0].points;
-  console.log(coordinates);
+  var coordinates = routeData.routes[0].legs[0].points.map(function (coordinate) {
+    // Transform each coordinate object to a Leaflet Latitude, Longitude object
+    return L.latLng(coordinate.latitude, coordinate.longitude);
+  });
+
+  // Create a routeLine from the coordinates and add it to the map
+  routeLine = L.polyline(coordinates, { color: "blue" }).addTo(map);
+
+  // Zoom the map to fit the routeLine
+  map.fitBounds(routeLine.getBounds());
 }
 
-// Initialise
+function clearRoute() {
+  // Remove the routeLine from the map
+  map.removeLayer(routeLine);
+
+  // Reset the locations
+  startLocation = null;
+  endLocation = null;
+}
+
 function init() {
   displayMap();
-  getData();
+
+  // Click event to draw routeLine on the map between a start and end location
+  map.on("click", function (event) {
+    // If startLocation is already set, set the endLocation to the clicked location
+    if (!startLocation) {
+      startLocation = event.latlng.lat + "," + event.latlng.lng;
+    } else {
+      endLocation = event.latlng.lat + "," + event.latlng.lng;
+
+      // Retrieve route data and display it on the map
+      getRouteData(startLocation, endLocation);
+    }
+  });
 }
 
 init();
