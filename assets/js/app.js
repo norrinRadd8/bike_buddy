@@ -69,4 +69,6 @@ function init() {
   });
 }
 
+// Tried plugins to no avail forced to commit before changing branch. This note to be deleted
+
 init();
