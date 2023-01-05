@@ -15,7 +15,7 @@ function displayMap() {
 function getRouteData(startLocation, endLocation) {
   var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
   var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
-  var params = "&routeType=bicycle&travelMode=bike&traffic=true&avoid=motorway";
+  //var params = "&routeType=bicycle&travelMode=bike&traffic=true&avoid=motorway";
   var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}`;
 
   // Retrieve the route data from TOMTOM
