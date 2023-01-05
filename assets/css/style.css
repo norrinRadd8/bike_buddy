@@ -1,0 +1,15 @@
+#qualityBox {
+  height: 100px;
+  width: 100px;
+  background-color: green;
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+  padding: 50px 10px 50px 10px;
+  border-radius: 10px;
+  line-height: 10px;
+}
+
+#AQI {
+  font-size: 32px;
+}
