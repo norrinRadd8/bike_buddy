@@ -8,7 +8,8 @@ function displayMap() {
   // Add a tile layer to the map
   L.tileLayer("https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=2fce13a5a3924a44beca122bc08ecb82", {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>',
   }).addTo(map);
 }
 
