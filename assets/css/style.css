@@ -14,4 +14,43 @@ body {
 height: 480px; 
 width: 1024px
 }
+/* new css file */
 
+.scroll_sec{
+    position: relative;
+    width:100%;
+    height: 6vh;
+    display:flex;
+    overflow: hidden;
+
+}
+
+.scroll_tips{
+    position: relative;
+    width: 100%;
+    background: lightblue;
+    overflow: hidden;
+
+}
+
+h4{
+    position: absolute;
+    white-space: nowrap;
+    animation: animate 20s linear infinite
+}
+
+.icon{
+    height: 1rem;
+
+}
+@keyframes animate{
+
+    0%
+    {
+        transform: translate(150%);
+    }
+    100%
+    {
+        transform: translate(-100%);
+    }
+}
