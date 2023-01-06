@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="With Bike Buddy, parents and guardians can trust that their children are cycling on the safest routes possible, giving them the peace of mind they deserve"
+    />
     <title>Bike Buddy</title>
     <link
       rel="stylesheet"
@@ -11,77 +15,100 @@
       integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
       crossorigin=""
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header>
-      <img class="" src="" alt="" />
-    </header>
+        <!-- LOGO HEADER -->
+        <header>
+            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+        </header>
 
-    <section id="main">
-      <h1>Welcome to BikeBuddy</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci officiis assumenda voluptas libero tenetur
-        praesentium reiciendis delectus quae corrupti est placeat culpa, neque porro unde. Dolore illo quia blanditiis
-        labore.
-      </p>
-      <button>Get Started</button>
-      <img id="main_image" src="" alt="" />
+        <!-- MAIN SECTION -->
+        <section id="main">
+            <h1>Welcome to BikeBuddy</h1>
+            <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
+            <button>Get Started</button>
+            <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
 
-      <img id="" src="" alt="" />
-      <h3>Popular Routes In Your Area</h3>
-      <div id="popular_one"></div>
-      <div id="popular_two"></div>
-    </section>
+            <!-- MAIN SECTION - Popular Routes In Your Area -->
+            <h3>Popular Routes In Your Area</h3>
+            <div id="popular_one"></div>
+            <div id="popular_two"></div>
+            <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
+        </section>
 
-    <section id="previous_search">
-      <img class="" src="" alt="" />
-      <h2>Search for a place</h2>
-      <p>Search your area below for route information, air quality & more.</p>
-      <input type="text" />
-      <button>Search</button>
-      <h2>Previous searches</h2>
-      <div id="previous_search_one"></div>
-      <div id="previous_search_two"></div>
-      <div id="previous_search_three"></div>
-    </section>
+        <!-- SEARCH SECTION - Previous Searches -->
+        <section id="previous_search">
+            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+            <img class="cyclist" src="/assets/images/Cyclist.png" alt="">
+            <h2>Search for a place</h2>
+            <p>Search your area below for route information, air quality & more.</p>
+            <input type="text">
+            <button id="search">Search</button>
+            <h2>Previous searches</h2><hr>
+            <div id="previous_search_one">
+                <h5 id="previous_search_one_h5">London, UK</h5>
+                <hr>
+                <p id="previous_search_one_traffic_rating"></p>
+                <p id="previous_search_one_air_quality"></p>
+            </div>
+            <div id="previous_search_two">
+                <h5 id="previous_search_two_h5">London, UK</h5>
+                <hr>
+                <p id="previous_search_two_traffic_rating">Traffic Rating: </p>
+                <p id="previous_search_two_air_quality">Air Quality Index: </p>
+            </div>
+            <div id="previous_search_three">
+                <h5 id="previous_search_three_h5">London, UK</h5>
+                <hr>
+                <p id="previous_search_three_traffic_rating">Traffic Rating: </p>
+                <p id="previous_search_three_air_quality">Air Quality Index: </p>
+            </div>
+            <div id="previous_search_four">
+                <h5 id="previous_search_four_h5">London, UK</h5>
+                <hr>
+                <p id="previous_search_four_traffic_rating">Traffic Rating: </p>
+                <p id="previous_search_four_air_quality">Air Quality Index: </p>
+            </div>
+        </section>
 
-    <section id="search_place">
-      <img class="" src="" alt="" />
-      <h2>Search for a place</h2>
-      <p>Search your area below for route information, air quality & more.</p>
-      <input type="text" />
+        <!-- SEARCH A PLACE - From and To -->
+        <!-- THIS HAS CHANGED FROM ORIGINAL DESIGN FROM AND TO INCLUDED WITH RESULTS COMMENTED OUT JUST IN CASE TO REVERT BACK -->
+        <!-- <section id="search_place">
+            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+                <h2>Search for a place</h2>
+                    <p>Search your area below for route information, air quality & more.</p>
+                        <input type="text">
+        
+                <div id="map"></div>
 
-      <div id="map"></div>
+                <h3>From</h3>
+                    <input type="text">
+                <h3>To</h3>
+                    <input type="text">
+                <button>Go</button>
+        </section> -->
 
-      <h3>From</h3>
-      <input type="text" />
-      <h3>To</h3>
-      <input type="text" />
-      <button>Go</button>
-    </section>
+        <!-- SEARCH RESULTS -->
+        <section id="search_result">
+        <h5 id="address_title">London, UK</h5>
+        <p id="address">8 Gordon Street, WC12 5PN</p>
+        <div id="traffic_safety_rating">Traffic Safety Rating</div>
+        <div id="aqi">London AQI: 30</div>
+        <div id="weather">Weather</div>
 
-    <section>
-      <h2>Info</h2>
-      <img class="" src="" alt="" />
-      <div id="traffic_safety_rating">Traffic Safety Rating</div>
-      <div id="aqi">London AQI: 30</div>
-      <div id="weather">Weather</div>
-      <div id="traffic">Traffic</div>
+        <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+            
 
-      <div id="map">TEST</div>
-      <button id="current_location"><img src="" alt="" /></button>
+            <div id="map">TEST</div>
+            <button id="current_location"><img src="" alt=""></button>
 
-      <h2>Safety tip of the day</h2>
-      <div id="scroll_tips">Scrolling Tips</div>
-    </section>
+        <h2>Safety tip of the day</h2>
+        <div id="scroll_tips">Scrolling Tips</div>
+        </section>
+
 
     <!-- Leaflet.js Library -->
     <script
