@@ -11,76 +11,89 @@
       integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
       crossorigin=""
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-        <header>
-            <img class="" src="" alt="">
-        </header>
+    <header>
+      <img class="" src="" alt="" />
+    </header>
 
-        <section id="main">
-            <h1>Welcome to BikeBuddy</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci officiis assumenda voluptas libero tenetur praesentium reiciendis delectus quae corrupti est placeat culpa, neque porro unde. Dolore illo quia blanditiis labore.</p>
-            <button>Get Started</button>
-            <img id="main_image" src="" alt="">
-        
-            <img id="" src="" alt="">
-            <h3>Popular Routes In Your Area</h3>
-            <div id="popular_one"></div>
-            <div id="popular_two"></div>
-        </section>
+    <section id="main">
+      <h1>Welcome to BikeBuddy</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci officiis assumenda voluptas libero tenetur
+        praesentium reiciendis delectus quae corrupti est placeat culpa, neque porro unde. Dolore illo quia blanditiis
+        labore.
+      </p>
+      <button>Get Started</button>
+      <img id="main_image" src="" alt="" />
+
+      <img id="" src="" alt="" />
+      <h3>Popular Routes In Your Area</h3>
+      <div id="popular_one"></div>
+      <div id="popular_two"></div>
+    </section>
 
     <section id="previous_search">
-        <img class="" src="" alt="">
-        <h2>Search for a place</h2>
-        <p>Search your area below for route information, air quality & more.</p>
-        <input type="text">
-        <button>Search</button>
-        <h2>Previous searches</h2>
-        <div id="previous_search_one"></div>
-        <div id="previous_search_two"></div>
-        <div id="previous_search_three"></div>
+      <img class="" src="" alt="" />
+      <h2>Search for a place</h2>
+      <p>Search your area below for route information, air quality & more.</p>
+      <input type="text" />
+      <button>Search</button>
+      <h2>Previous searches</h2>
+      <div id="previous_search_one"></div>
+      <div id="previous_search_two"></div>
+      <div id="previous_search_three"></div>
     </section>
 
     <section id="search_place">
-        <img class="" src="" alt="">
-            <h2>Search for a place</h2>
-                <p>Search your area below for route information, air quality & more.</p>
-                    <input type="text">
-        
-            <div id="map"></div>
+      <img class="" src="" alt="" />
+      <h2>Search for a place</h2>
+      <p>Search your area below for route information, air quality & more.</p>
+      <input type="text" />
 
-            <h3>From</h3>
-                <input type="text">
-            <h3>To</h3>
-                <input type="text">
-            <button>Go</button>
+      <div id="map"></div>
+
+      <h3>From</h3>
+      <input type="text" />
+      <h3>To</h3>
+      <input type="text" />
+      <button>Go</button>
     </section>
 
     <section>
-    <h2>Info</h2>
-        <img class="" src="" alt="">
-        <div id="traffic_safety_rating">Traffic Safety Rating</div>
-        <div id="aqi">London AQI: 30</div>
-        <div id="weather">Weather</div>
-        <div id="traffic">Traffic</div>
+      <h2>Info</h2>
+      <img class="" src="" alt="" />
+      <div id="traffic_safety_rating">Traffic Safety Rating</div>
+      <div id="aqi">London AQI: 30</div>
+      <div id="weather">Weather</div>
+      <div id="traffic">Traffic</div>
 
-        <div id="map">TEST</div>
-         <button id="current_location"><img src="" alt=""></button>
+      <div id="map">TEST</div>
+      <button id="current_location"><img src="" alt="" /></button>
 
-    <h2>Safety tip of the day</h2>
-    <div id="scroll_tips">Scrolling Tips</div>
-
+      <h2>Safety tip of the day</h2>
+      <div id="scroll_tips">Scrolling Tips</div>
     </section>
 
-
+    <!-- Leaflet.js Library -->
     <script
       src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
     ></script>
+    <!-- Location Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.68.0/dist/L.Control.Locate.min.js"></script>
+    <!-- JQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- App.js -->
     <script src="assets/js/app.js"></script>
   </body>
 </html>
-
