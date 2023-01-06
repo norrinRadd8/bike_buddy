@@ -16,6 +16,7 @@ function displayMap() {
 function getRouteData(startLocation, endLocation) {
   var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
   var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
+
   var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}&travelMode=bicycle&traffic=true&routeType=thrilling&hilliness=low&avoid=motorways&avoid=tollRoads&avoid=ferries&avoid=unpavedRoads`;
   // Info for params > travelMode plots route with bicycle lanes if pos + traffic plots route with least traffic + routeType allows the use of hilliness to plot routes with low elevation + avoid motorways, tollRoads, ferries & unpavedRoads
 
