@@ -1,3 +1,15 @@
+body {
+    background-image: url('/assets/images/Background.png');
+}
+
+.main_logo {
+    width: 10%;
+}
+
+.cyclist {
+    width: 7%;
+}
+
 #map { 
 height: 480px; 
 width: 1024px
