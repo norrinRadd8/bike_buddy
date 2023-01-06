@@ -3,6 +3,8 @@ var map = L.map("map").setView([51.505, -0.09], 13);
 var startLocation;
 var endLocation;
 var routeLine;
+var startMarker;
+var endMarker;
 
 function displayMap() {
   // Add a tile layer to the map
@@ -46,25 +48,43 @@ function displayRoute(routeData) {
 }
 
 function clearRoute() {
-  // Remove the routeLine from the map
+  // Remove the routeLine and markers from the map
   map.removeLayer(routeLine);
+  map.removeLayer(startMarker);
+  map.removeLayer(endMarker);
 
-  // Reset the locations
+  // Reset the locations and markers
   startLocation = null;
   endLocation = null;
+  startMarker = null;
+  endMarker = null;
+}
+
+function displayCurrentLocation() {
+  L.control
+    .locate({
+      position: "topright",
+      strings: {
+        title: "Show current location",
+      },
+    })
+    .addTo(map);
 }
 
 // || INITIALISE THE PAGE
 function init() {
   displayMap();
+  displayCurrentLocation();
 
   // Click event to draw routeLine on the map between a start and end location
   map.on("click", function (event) {
     // If start location is already set, set the end location to the clicked location
     if (!startLocation) {
       startLocation = event.latlng.lat + "," + event.latlng.lng;
+      startMarker = L.marker(event.latlng).addTo(map);
     } else {
       endLocation = event.latlng.lat + "," + event.latlng.lng;
+      endMarker = L.marker(event.latlng).addTo(map);
 
       // Retrieve route data and display it on the map
       getRouteData(startLocation, endLocation);
