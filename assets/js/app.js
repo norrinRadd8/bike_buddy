@@ -8,11 +8,13 @@ var endMarker;
 
 function displayMap() {
   // Add a tile layer to the map
-  L.tileLayer("https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=2fce13a5a3924a44beca122bc08ecb82", {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>',
-  }).addTo(map);
+  L.tileLayer('https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+	attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	minZoom: 0,
+	maxZoom: 22,
+	subdomains: 'abcd',
+	accessToken: 'ukHSBSSJvmHto21L0igMtBEPPz5BXrFd7buaLp6nOHvXHev79gRJKl3oqjqK2e0y'
+}).addTo(map);
 }
 
 function getRouteData(startLocation, endLocation) {
