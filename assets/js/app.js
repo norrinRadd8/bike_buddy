@@ -6,6 +6,13 @@ var routeLine;
 var startMarker;
 var endMarker;
 
+// VARIABLES FOR AQI (Air Quality Index)
+
+var url = "http://api.waqi.info/feed/";
+var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
+var city = "London";
+
+
 function displayMap() {
   // Add a tile layer to the map
   L.tileLayer('https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
@@ -95,3 +102,31 @@ function init() {
 }
 
 init();
+
+// AQI (Air Quality index API) CODE
+
+$.get(url + city + url2).then(function (currentData) {
+  console.log(currentData);
+
+  $("#aqi").append(`
+  ${city} 
+  <p id="AQIndex"> AQI:${currentData.data.aqi}</p>
+  (Air Quality)
+  
+  `);
+
+  var AQI = currentData.data.aqi;
+  console.log(AQI);
+
+  if (AQI <= 50) {
+    $("#qualityBox").css({ backgroundColor: "green", color: "white" });
+  }
+
+  if (AQI >= 50) {
+    $("#qualityBox").css({ backgroundColor: "orange", color: "white" });
+  }
+
+  if (AQI >= 100) {
+    $("#qualityBox").css({ backgroundColor: "red", color: "white" });
+  }
+});
