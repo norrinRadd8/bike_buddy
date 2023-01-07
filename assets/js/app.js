@@ -74,6 +74,7 @@ function displayCurrentLocation() {
 function init() {
   displayMap();
   displayCurrentLocation();
+  search();
 
   // Click event to draw routeLine on the map between a start and end location
   map.on("click", function (event) {
@@ -91,33 +92,26 @@ function init() {
   });
 }
 
-var searchInput = $('#search_result')
-var options = {
-  searchOptions: {
-    key: "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF",
-    language: "en-GB",
-    limit: 5,
-    //position: 'topright',
-  },
-  autocompleteOptions: {
-    key: "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF",
-    language: "en-GB",
-  },
+// Search control within map
+function search() {
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var geocoder = L.Control.geocoder({
+  defaultMarkGeocode: false
+})
+  .on('markgeocode', function(e) {
+    var bbox = e.geocode.bbox;
+    var poly = L.polygon([
+      bbox.getSouthEast(),
+      bbox.getNorthEast(),
+      bbox.getNorthWest(),
+      bbox.getSouthWest()
+    ]).addTo(map);
+    map.fitBounds(poly.getBounds());
+  })
+  .addTo(map);
 }
-
-var geosearchControl = L.Control.openCageGeosearch(options).addTo(map);
-
-
-// new L.Control.GPlaceAutocomplete().addTo(map);
-
-
-// new L.Control.GPlaceAutocomplete({
-// 	callback: function(place){
-// 		var loc = place.geometry.location;
-// 		map.setView( [loc.lat(), loc.lng()], 18);
-// 	}
-// }).addTo(map);
-
-
 
 init();
