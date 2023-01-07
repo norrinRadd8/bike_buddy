@@ -166,7 +166,7 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 
 <a href="https://www.linkedin.com/in/NAME/">Aurelia Stanculea</a>
 
-<a href="https://www.linkedin.com/in/NAME/">Hal Wraithe</a>
+<a href="https://www.linkedin.com/in/NAME/">Hal Waithe</a>
 
 <a href="https://www.linkedin.com/in/mdyeates/">Michael Yeates</a>
 

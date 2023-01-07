@@ -5,6 +5,9 @@ var endLocation;
 var routeLine;
 var startMarker;
 var endMarker;
+var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
+var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
+
 var isRouteDrawn = false;
 var mapLayer = MQ.mapLayer(),
   map;
@@ -13,6 +16,7 @@ var mapLayer = MQ.mapLayer(),
 var url = "http://api.waqi.info/feed/";
 var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
 var city = "London";
+
 
 function displayMap() {
   // Add a tile layer to the map
@@ -31,9 +35,6 @@ function displayMap() {
 }
 
 function getRouteData(startLocation, endLocation) {
-  var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
-  var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
-
   var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}&travelMode=bicycle&traffic=true&routeType=thrilling&hilliness=low&avoid=motorways&avoid=tollRoads&avoid=ferries&avoid=unpavedRoads`;
   // Info for params > travelMode plots route with bicycle lanes if pos + traffic plots route with least traffic + routeType allows the use of hilliness to plot routes with low elevation + avoid motorways, tollRoads, ferries & unpavedRoads
 
@@ -127,8 +128,10 @@ function trafficMap() {
 function init() {
   displayMap();
   displayCurrentLocation();
+  search();
   createClearRouteButton();
   trafficMap();
+
 
   // Click event to draw routeLine on the map between a start and end location
   map.on("click", function (event) {
@@ -154,6 +157,28 @@ function init() {
         .openOn(map);
     }
   });
+}
+
+// Search control within map
+function search() {
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var geocoder = L.Control.geocoder({
+  defaultMarkGeocode: false
+})
+  .on('markgeocode', function(e) {
+    var bbox = e.geocode.bbox;
+    var poly = L.polygon([
+      bbox.getSouthEast(),
+      bbox.getNorthEast(),
+      bbox.getNorthWest(),
+      bbox.getSouthWest()
+    ]).addTo(map);
+    map.fitBounds(poly.getBounds());
+  })
+  .addTo(map);
 }
 
 init();
