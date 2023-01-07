@@ -5,6 +5,8 @@ var endLocation;
 var routeLine;
 var startMarker;
 var endMarker;
+var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
+var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
 
 function displayMap() {
   // Add a tile layer to the map
@@ -16,9 +18,6 @@ function displayMap() {
 }
 
 function getRouteData(startLocation, endLocation) {
-  var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
-  var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
-
   var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}&travelMode=bicycle&traffic=true&routeType=thrilling&hilliness=low&avoid=motorways&avoid=tollRoads&avoid=ferries&avoid=unpavedRoads`;
   // Info for params > travelMode plots route with bicycle lanes if pos + traffic plots route with least traffic + routeType allows the use of hilliness to plot routes with low elevation + avoid motorways, tollRoads, ferries & unpavedRoads
 
@@ -91,5 +90,34 @@ function init() {
     }
   });
 }
+
+var searchInput = $('#search_result')
+var options = {
+  searchOptions: {
+    key: "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF",
+    language: "en-GB",
+    limit: 5,
+    //position: 'topright',
+  },
+  autocompleteOptions: {
+    key: "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF",
+    language: "en-GB",
+  },
+}
+
+var geosearchControl = L.Control.openCageGeosearch(options).addTo(map);
+
+
+// new L.Control.GPlaceAutocomplete().addTo(map);
+
+
+// new L.Control.GPlaceAutocomplete({
+// 	callback: function(place){
+// 		var loc = place.geometry.location;
+// 		map.setView( [loc.lat(), loc.lng()], 18);
+// 	}
+// }).addTo(map);
+
+
 
 init();
