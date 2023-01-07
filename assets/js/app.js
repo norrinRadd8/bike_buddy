@@ -6,7 +6,8 @@ var routeLine;
 var startMarker;
 var endMarker;
 var isRouteDrawn = false;
-
+var mapLayer = MQ.mapLayer(),
+  map;
 // VARIABLES FOR AQI (Air Quality Index)
 
 var url = "http://api.waqi.info/feed/";
@@ -15,14 +16,18 @@ var city = "London";
 
 function displayMap() {
   // Add a tile layer to the map
-  L.tileLayer("https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}", {
-    attribution:
-      '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    minZoom: 0,
-    maxZoom: 22,
-    subdomains: "abcd",
-    accessToken: "ukHSBSSJvmHto21L0igMtBEPPz5BXrFd7buaLp6nOHvXHev79gRJKl3oqjqK2e0y",
-  }).addTo(map);
+  L.tileLayer(
+    "https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}",
+    {
+      attribution:
+        '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      minZoom: 0,
+      maxZoom: 22,
+      subdomains: "abcd",
+      accessToken:
+        "ukHSBSSJvmHto21L0igMtBEPPz5BXrFd7buaLp6nOHvXHev79gRJKl3oqjqK2e0y",
+    }
+  ).addTo(map);
 }
 
 function getRouteData(startLocation, endLocation) {
@@ -45,7 +50,9 @@ function getRouteData(startLocation, endLocation) {
 
 function displayRoute(routeData) {
   // Extract the coordinates from route data
-  var coordinates = routeData.routes[0].legs[0].points.map(function (coordinate) {
+  var coordinates = routeData.routes[0].legs[0].points.map(function (
+    coordinate
+  ) {
     // Transform each coordinate object to a Leaflet Latitude, Longitude object
     return L.latLng(coordinate.latitude, coordinate.longitude);
   });
@@ -99,11 +106,29 @@ function createClearRouteButton() {
   }).addTo(map);
 }
 
+function trafficMap() {
+  L.control
+    .layers(
+      {
+        Map: mapLayer,
+        Satellite: MQ.satelliteLayer(),
+        Dark: MQ.darkLayer(),
+        Light: MQ.lightLayer(),
+      },
+      {
+        "Traffic Flow": MQ.trafficLayer({ layers: ["flow"] }),
+        "Traffic Incidents": MQ.trafficLayer({ layers: ["incidents"] }),
+      }
+    )
+    .addTo(map);
+}
+
 // || INITIALISE THE PAGE
 function init() {
   displayMap();
   displayCurrentLocation();
   createClearRouteButton();
+  trafficMap();
 
   // Click event to draw routeLine on the map between a start and end location
   map.on("click", function (event) {
@@ -123,7 +148,10 @@ function init() {
       isRouteDrawn = true;
     } else {
       // If a route is drawn, display a popup to inform the user to clear the route first
-      L.popup().setLatLng(event.latlng).setContent("Please clear the route before adding a new one").openOn(map);
+      L.popup()
+        .setLatLng(event.latlng)
+        .setContent("Please clear the route before adding a new one")
+        .openOn(map);
     }
   });
 }
