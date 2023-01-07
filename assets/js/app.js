@@ -161,9 +161,6 @@ function init() {
 
 // Search control within map
 function search() {
-L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
 
 var geocoder = L.Control.geocoder({
   defaultMarkGeocode: false
