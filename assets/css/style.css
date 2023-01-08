@@ -25,8 +25,20 @@ body {
   width: 400px;
 }
 
-.text,
+.text {
+  color: white;
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 64;
+}
+
 p {
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 31px;
   color: white;
 }
 
@@ -36,24 +48,37 @@ p {
 }
 
 .routes {
-  background-color: blue;
-  border-radius: 3%;
+  background-color: #006db0;
+  border-radius: 124px;
+  height: 617px;
+  width: 1278px;
 }
 
 .popular_routes {
   margin-top: 100px;
   margin-bottom: 100px;
 }
-.points {
+.dots {
   color: #ffffff;
   margin-bottom: 30px;
 }
 .popular {
-  font-size: medium;
   color: #ffffff;
   margin-bottom: 30px;
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 110.9%;
 }
 
-.card {
-  height: 150px;
+.col-6 .card {
+  width: 246.64px;
+  height: 246px;
+  border-radius: 65px;
+}
+
+.col-6 .main_logo {
+  width: 605px;
+  height: 388px;
 }
