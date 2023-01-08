@@ -67,7 +67,7 @@ function saveButton() {
 function saveRoute() {
   if (!routeLine) return;
 
-  var savedRouteData = JSON.parse(localStorage.getItem("routeInfo")) || [];
+  var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
 
   var routeData = {
     location: city, // city needs to be made dynamic based on search
@@ -87,7 +87,7 @@ function saveRoute() {
   // Keep only the first 4 elements
   savedRouteData = savedRouteData.slice(0, 4);
 
-  localStorage.setItem("routeInfo", JSON.stringify(savedRouteData));
+  localStorage.setItem("routeData", JSON.stringify(savedRouteData));
 }
 
 function displayRoute(routeData) {
