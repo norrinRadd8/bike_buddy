@@ -4,11 +4,13 @@ var startLocation;
 var endLocation;
 var startMarker;
 var endMarker;
+var routeLine;
 var isRouteDrawn = false;
 // var mapLayer = MQ.mapLayer(),
 //   map;
 
 // VARIABLES FOR AQI (Air Quality Index)
+var AQI;
 var url = "http://api.waqi.info/feed/";
 var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
 var city = "London";
@@ -41,6 +43,51 @@ function getRouteData(startLocation, endLocation) {
     .catch(function (error) {
       console.error("API ERROR", error);
     });
+}
+
+function saveButton() {
+  var saveButton = L.easyButton({
+    position: "bottomright",
+    title: "Save route",
+    leafletClasses: true,
+    className: "leaflet-bar leaflet-control",
+    states: [
+      {
+        stateName: "save-route",
+        icon: "fas fa-save",
+        title: "Save route",
+        onClick: function () {
+          saveRoute(saveButton);
+        },
+      },
+    ],
+  }).addTo(map);
+}
+
+function saveRoute() {
+  if (!routeLine) return;
+
+  var savedRouteData = JSON.parse(localStorage.getItem("routeInfo")) || [];
+
+  var routeData = {
+    location: city, // city needs to be made dynamic based on search
+    aqi: AQI, // same as above
+    weather: "Current Weather variable", // update with variable when completed
+    latlngs: routeLine._latlngs,
+    // Add variables below from displayRouteDetails if we get a chance
+    // arrival: arrivalTime,
+    // departure: departureTime,
+    // duration: estimatedTime,
+    // distance: distanceMiles,
+  };
+
+  // Add routeData to the beginning rather than pushing to the end
+  savedRouteData.unshift(routeData);
+
+  // Keep only the first 4 elements
+  savedRouteData = savedRouteData.slice(0, 4);
+
+  localStorage.setItem("routeInfo", JSON.stringify(savedRouteData));
 }
 
 function displayRoute(routeData) {
@@ -88,11 +135,13 @@ function displayCurrentLocation() {
     .addTo(map);
 }
 
-function clearRoute() {
+function clearRoute(clearRouteButton) {
+  if (!routeLine) return;
+
   // Remove the routeLine and markers from the map
-  map.removeLayer(routeLine);
-  map.removeLayer(startMarker);
-  map.removeLayer(endMarker);
+  if (routeLine) map.removeLayer(routeLine);
+  if (startMarker) map.removeLayer(startMarker);
+  if (endMarker) map.removeLayer(endMarker);
 
   // Remove popups from the map
   map.closePopup();
@@ -103,10 +152,12 @@ function clearRoute() {
   startMarker = null;
   endMarker = null;
   isRouteDrawn = false;
+
+  clearRouteButton.disable();
 }
 
-function createClearRouteButton() {
-  L.easyButton({
+function clearRouteButton() {
+  var clearButton = L.easyButton({
     position: "bottomright",
     title: "Clear route",
     leafletClasses: true,
@@ -116,7 +167,9 @@ function createClearRouteButton() {
         stateName: "clear-route",
         icon: "fas fa-trash",
         title: "Clear route",
-        onClick: clearRoute,
+        onClick: function () {
+          clearRoute(clearButton);
+        },
       },
     ],
   }).addTo(map);
@@ -174,7 +227,7 @@ $.get(url + city + url2).then(function (currentData) {
   
   `);
 
-  var AQI = currentData.data.aqi;
+  AQI = currentData.data.aqi;
   console.log(AQI);
 
   if (AQI <= 50) {
@@ -196,7 +249,8 @@ function init() {
   displayMap();
   displayCurrentLocation();
   search();
-  createClearRouteButton();
+  clearRouteButton();
+  saveButton();
   // trafficMap();
 
   // Click Events
