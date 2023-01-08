@@ -65,7 +65,7 @@ function saveButton() {
 }
 
 function saveRoute() {
-  if (!routeLine) return;
+  if (!isRouteDrawn) return;
 
   var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
 
@@ -81,10 +81,10 @@ function saveRoute() {
     // distance: distanceMiles,
   };
 
-  // Add routeData to the beginning rather than pushing to the end
+  // Add newly saved routeData to the beginning of the array
   savedRouteData.unshift(routeData);
 
-  // Keep only the first 4 elements
+  // And keep only the first 4 elements
   savedRouteData = savedRouteData.slice(0, 4);
 
   localStorage.setItem("routeData", JSON.stringify(savedRouteData));
@@ -136,7 +136,7 @@ function displayCurrentLocation() {
 }
 
 function clearRoute(clearRouteButton) {
-  if (!routeLine) return;
+  if (!isRouteDrawn) return;
 
   // Remove the routeLine and markers from the map
   if (routeLine) map.removeLayer(routeLine);
