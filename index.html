@@ -15,158 +15,206 @@
       integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
       crossorigin=""
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+
+    <!-- GEOSEARCH SEARCH -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch/leaflet-opencage-geosearch.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+
+    <script src="http://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
+    <script src="./assets/js/leaflet-providers.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-        <!-- LOGO HEADER -->
-        <div class="jumbotron">
-          <div class="container">
-    
-            <div class="row">
-              <header class="col d-flex justify-content-center">
-                
-                  <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-                </header>
-              </div>
-            </div> 
-          </div>   
-        
+    <!-- LOGO HEADER -->
+    <div class="jumbotron">
+      <div class="container">
 
-        <!-- MAIN SECTION -->
-        <div class="container" id="main">
-              
-          <div class="row main-section d-flex justify-content-evenly">
-   
-            <div class="col-4">
-              <h1 class ="text">Welcome to BikeBuddy</h1>
-               <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
-               <button type="button" class="btn btn-primary">Get Started</button>
-            </div>
-            <div class= "col-6">
-                <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
-                 
-            </div>
-               
+        <div class="row">
+          <header class="col d-flex justify-content-center">
             
+              <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+            </header>
           </div>
+        </div> 
+      </div>   
+    
+
+    <!-- MAIN SECTION -->
+    <div class="container" id="main">
+          
+      <div class="row main-section d-flex justify-content-evenly">
+
+        <div class="col-4">
+          <h1 class ="text">Welcome to BikeBuddy</h1>
+           <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
+           <button type="button" class="btn btn-primary">Get Started</button>
+        </div>
+        <div class= "col-6">
+            <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
+             
+        </div>
+           
+        
       </div>
-    </div>
-            <!-- MAIN SECTION - Popular Routes In Your Area -->
-        <section class="popular_routes">
-          <div class="container">
-            <div class ="card routes" style="height: 400px">
-              <div class="card-body">
-                <h2 class="points text-center">...</h2>
+  </div>
+</div>
+        <!-- MAIN SECTION - Popular Routes In Your Area -->
+    <section class="popular_routes">
+      <div class="container">
+        <div class ="card routes" style="height: 400px">
+          <div class="card-body">
+            <h2 class="points text-center">...</h2>
 
-               <div class = "row d-flex align-items-between">
-                
-                <div class="col-6">
-                  <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
-                </div>
+           <div class = "row d-flex align-items-between">
+            
+            <div class="col-6">
+              <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
+            </div>
 
-                <div class="col-6">
-                  <h3 class="popular text-center">Popular Routes In Your Area</h3>
-                    <div class = "row d-flex justify-content-evenly">
-                     <div class="col-md-4" id="popular_one">
-                       <div class="card">
-                        <div class="card-body"></div>
-                       </div>
-                      </div> 
-                      <div class="col-md-4" id="popular_two">
-                       <div class="card">
-                         <div class="card-body"></div>
-                       </div>
-                      </div>
-                </div> 
+            <div class="col-6">
+              <h3 class="popular text-center">Popular Routes In Your Area</h3>
+                <div class = "row d-flex justify-content-evenly">
+                 <div class="col-md-4" id="popular_one">
+                   <div class="card">
+                    <div class="card-body"></div>
+                   </div>
+                  </div> 
+                  <div class="col-md-4" id="popular_two">
+                   <div class="card">
+                     <div class="card-body"></div>
+                   </div>
+                  </div>
+            </div> 
+        </div>
+        </div>
+        </div>  
+      </div> 
+    </section>
+
+    <!-- SEARCH SECTION - Previous Searches -->
+    <section class="previous" id="previous_search">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col">
+            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+          <div>
+          <div class="col text-center">
+            <img class="cyclist" src="assets/images/Cyclist.png" alt="">
+            <h2 class="text">Search for a place</h2>
+            <p>Search your area below for route information, air quality & more.</p>
+            <input type="text">
+          </div>  
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary" id="search">Search</button>
+          </div>
+          <div class="col text-center">
+            <h2 class="text">Previous searches</h2>
+          </div>  
+        </div> 
+      </div>
+
+      <div class="container">
+        <div class="row d-flex justify-content-evenly">
+          <div class="col-md-2">
+            <div class="card">
+              <div class="card-body text-center"></div>
+            </div> 
+          </div>
+
+          <div class="col-md-2">
+            <div class="card">
+              <div class="card-body text-center"></div> 
             </div>
-            </div>
+          </div>  
+
+          <div class="col-md-2">
+            <div class="card">
+              <div class="card-body text-center"></div>
             </div>  
           </div> 
-        </section>
 
-        <!-- SEARCH SECTION - Previous Searches -->
-        <section class="previous" id="previous_search">
-          <div class="container">
-            <div class="row d-flex">
-              <div class="col">
-                <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-              <div>
-              <div class="col text-center">
-                <img class="cyclist" src="assets/images/Cyclist.png" alt="">
-                <h2 class="text">Search for a place</h2>
-                <p>Search your area below for route information, air quality & more.</p>
-                <input type="text">
-              </div>  
-              <div class="col text-center">
-                <button type="button" class="btn btn-primary" id="search">Search</button>
-              </div>
-              <div class="col text-center">
-                <h2 class="text">Previous searches</h2>
-              </div>  
-            </div> 
-          </div>
-
-          <div class="container">
-            <div class="row d-flex justify-content-evenly">
-              <div class="col-md-2">
-                <div class="card">
-                  <div class="card-body text-center"></div>
-                </div> 
-              </div>
-
-              <div class="col-md-2">
-                <div class="card">
-                  <div class="card-body text-center"></div> 
-                </div>
-              </div>  
-
-              <div class="col-md-2">
-                <div class="card">
-                  <div class="card-body text-center"></div>
-                </div>  
-              </div> 
-
-            </div>  
-          </div>    
-        </section>
+        </div>  
+      </div>    
+    </section>
 
 
+    <div id="previous_search_one">
+        <h5 id="previous_search_one_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_one_traffic_rating"></p>
+        <p id="previous_search_one_air_quality"></p>
+      </div>
+      <div id="previous_search_two">
+        <h5 id="previous_search_two_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_two_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_two_air_quality">Air Quality Index:</p>
+      </div>
+      <div id="previous_search_three">
+        <h5 id="previous_search_three_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_three_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_three_air_quality">Air Quality Index:</p>
+      </div>
+      <div id="previous_search_four">
+        <h5 id="previous_search_four_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_four_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_four_air_quality">Air Quality Index:</p>
+      </div>
+    </section>
 
+    <!-- SEARCH SECTION - Previous Searches -->
+    <section id="previous_search">
+      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
+      <img class="cyclist" src="/assets/images/Cyclist.png" alt="" />
+      <h2>Search for a place</h2>
+      <p>Search your area below for route information, air quality & more.</p>
+      <input type="text" />
+      <button id="search">Search</button>
+      <h2>Previous searches</h2>
+      <hr />
+      <div id="previous_search_one">
+        <h5 id="previous_search_one_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_one_traffic_rating"></p>
+        <p id="previous_search_one_air_quality"></p>
+      </div>
+      <div id="previous_search_two">
+        <h5 id="previous_search_two_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_two_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_two_air_quality">Air Quality Index:</p>
+      </div>
+      <div id="previous_search_three">
+        <h5 id="previous_search_three_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_three_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_three_air_quality">Air Quality Index:</p>
+      </div>
+      <div id="previous_search_four">
+        <h5 id="previous_search_four_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_four_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_four_air_quality">Air Quality Index:</p>
+      </div>
+    </section>
 
-              <div id="previous_search_one">
-                    <h5 id="previous_search_one_h5">London, UK</h5>
-                    <hr>
-                    <p id="previous_search_one_traffic_rating"></p>
-                    <p id="previous_search_one_air_quality"></p>
-                </div>
-                <div id="previous_search_two">
-                    <h5 id="previous_search_two_h5">London, UK</h5>
-                    <hr>
-                    <p id="previous_search_two_traffic_rating">Traffic Rating: </p>
-                    <p id="previous_search_two_air_quality">Air Quality Index: </p>
-                </div>
-                <div id="previous_search_three">
-                    <h5 id="previous_search_three_h5">London, UK</h5>
-                    <hr>
-                    <p id="previous_search_three_traffic_rating">Traffic Rating: </p>
-                    <p id="previous_search_three_air_quality">Air Quality Index: </p>
-                </div>
-                <div id="previous_search_four">
-                    <h5 id="previous_search_four_h5">London, UK</h5>
-                    <hr>
-                    <p id="previous_search_four_traffic_rating">Traffic Rating: </p>
-                    <p id="previous_search_four_air_quality">Air Quality Index: </p>
-                </div>
-               
-          
-           
-    
-
-        <!-- SEARCH A PLACE - From and To -->
-        <!-- THIS HAS CHANGED FROM ORIGINAL DESIGN FROM AND TO INCLUDED WITH RESULTS COMMENTED OUT JUST IN CASE TO REVERT BACK -->
-        <!-- <section id="search_place">
-            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+    <!-- SEARCH A PLACE - From and To -->
+    <!-- THIS HAS CHANGED FROM ORIGINAL DESIGN FROM AND TO INCLUDED WITH RESULTS COMMENTED OUT JUST IN CASE TO REVERT BACK -->
+    <!-- <section id="search_place">
+  
+      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
                 <h2>Search for a place</h2>
                     <p>Search your area below for route information, air quality & more.</p>
                         <input type="text">
@@ -180,33 +228,57 @@
                 <button>Go</button>
         </section> -->
 
-        <!-- SEARCH RESULTS -->
-        <section id="search_result">
-        <h5 id="address_title">London, UK</h5>
-        <p id="address">8 Gordon Street, WC12 5PN</p>
-        <div id="traffic_safety_rating">Traffic Safety Rating</div>
-        <div id="aqi">London AQI: 30</div>
-        <div id="weather">Weather</div>
+    <!-- SEARCH RESULTS -->
+    <section id="search_result">
+      <h5 id="address_title">London, UK</h5>
+      <p id="address">8 Gordon Street, WC12 5PN</p>
+      <div id="traffic_safety_rating">Traffic Safety Rating</div>
+      <div id="aqi"></div>
+      <div id="weather">Weather</div>
 
-        <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-            
+      <div id="map"></div>
+      <div class="pointer"></div>
+      <button id="current_location"><img src="" alt="" /></button>
 
-            <div id="map">TEST</div>
-            <button id="current_location"><img src="" alt=""></button>
+      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
 
-        <h2>Safety tip of the day</h2>
-        <div id="scroll_tips">Scrolling Tips</div>
-        </section>
+      <div id="map"></div>
+    </section>
 
-
+    <section class="scroll_sec">
+      <div class="scroll_tips">
+        <h4>
+          BikeBuddy Cycle Tips:
+          <img class="icon" src="assets/images/bicycle.png" /> Dont cycle down stairs!
+          <img class="icon" src="assets/images/bicycle.png" /> Keep 2 hands on the wheel!
+          <img class="icon" src="assets/images/bicycle.png" /> Always wear a helmet!
+          <img class="icon" src="assets/images/bicycle.png" /> Use lights when cycling at night!
+          <img class="icon" src="assets/images/bicycle.png" /> Park your bike responsibily!
+          <img class="icon" src="assets/images/bicycle.png" /> Listen to your parents!
+          <img class="icon" src="assets/images/bicycle.png" />
+        </h4>
+      </div>
+    </section>
 
     <script
       src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
     ></script>
+    <!-- Traffic & Layered Maps Plugins-->
+    <!-- <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=XxJwSfiWGX1w9qEYylwN9f03GtegVqO9"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=XxJwSfiWGX1w9qEYylwN9f03GtegVqO9"></script> -->
+    <!-- Location Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.68.0/dist/L.Control.Locate.min.js"></script>
+    <!-- Easy Button Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <!-- Polyline Animation -->
+    <script src="https://unpkg.com/leaflet.polyline.snakeanim@0.2.0/L.Polyline.SnakeAnim.js"></script>
+    <!-- JQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Search -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <!-- App.js -->
     <script src="assets/js/app.js"></script>
   </body>
 </html>
-
