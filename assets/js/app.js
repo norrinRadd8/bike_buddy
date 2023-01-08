@@ -5,8 +5,8 @@ var endLocation;
 var startMarker;
 var endMarker;
 var isRouteDrawn = false;
-var mapLayer = MQ.mapLayer(),
-  map;
+// var mapLayer = MQ.mapLayer(),
+//   map;
 
 // VARIABLES FOR AQI (Air Quality Index)
 var url = "http://api.waqi.info/feed/";
@@ -131,22 +131,22 @@ function displayRouteDetails(routeData) {
   // Data for route to display on our page, if someone gets the chance when the design is done
 }
 
-function trafficMap() {
-  L.control
-    .layers(
-      {
-        Map: mapLayer,
-        Satellite: MQ.satelliteLayer(),
-        Dark: MQ.darkLayer(),
-        Light: MQ.lightLayer(),
-      },
-      {
-        "Traffic Flow": MQ.trafficLayer({ layers: ["flow"] }),
-        "Traffic Incidents": MQ.trafficLayer({ layers: ["incidents"] }),
-      }
-    )
-    .addTo(map);
-}
+// function trafficMap() {
+//   L.control
+//     .layers(
+//       {
+//         Map: mapLayer,
+//         Satellite: MQ.satelliteLayer(),
+//         Dark: MQ.darkLayer(),
+//         Light: MQ.lightLayer(),
+//       },
+//       {
+//         "Traffic Flow": MQ.trafficLayer({ layers: ["flow"] }),
+//         "Traffic Incidents": MQ.trafficLayer({ layers: ["incidents"] }),
+//       }
+//     )
+//     .addTo(map);
+// }
 
 // Search control within map
 function search() {
@@ -197,7 +197,7 @@ function init() {
   displayCurrentLocation();
   search();
   createClearRouteButton();
-  trafficMap();
+  // trafficMap();
 
   // Click Events
   map.on("click", onRouteClick);
