@@ -17,107 +17,82 @@
     />
 
     <!-- GEOSEARCH SEARCH -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch/leaflet-opencage-geosearch.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
+      href="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch/leaflet-opencage-geosearch.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 
     <script src="http://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
     <script src="./assets/js/leaflet-providers.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <!-- LOGO HEADER -->
     <header>
-      <img
-        class="main_logo"
-        src="assets/images/BIKEBUDDY LOGO WHITE.png"
-        alt=""
-      />
+      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
     </header>
 
     <!-- MAIN SECTION -->
     <section id="main">
       <h1>Welcome to BikeBuddy</h1>
-      <p>
-        We help parents find as safe a place as possible to teach their children
-        cycling on the road.
-      </p>
+      <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
       <button>Get Started</button>
-      <img
-        class="main_logo"
-        src="assets/images/Landing Placeholder IMG.png"
-        alt=""
-      />
+      <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="" />
 
       <!-- MAIN SECTION - Popular Routes In Your Area -->
       <h3>Popular Routes In Your Area</h3>
       <div id="popular_one"></div>
       <div id="popular_two"></div>
-      <img
-        class="main_logo"
-        src="assets/images/Landing Placeholder IMG.png"
-        alt=""
-      />
+      <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="" />
     </section>
-
-
-        <!-- SEARCH SECTION - Previous Searches -->
-        <section id="previous_search">
-            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-            <img class="cyclist" src="/assets/images/Cyclist.png" alt="">
-            <h2>Search for a place</h2>
-            <p>Search your area below for route information, air quality & more.</p>
-            <input id="search_input" type="text">
-            <button id="searchBtn">Search</button>
-            <h2>Previous searches</h2><hr>
-            <div id="previous_search_one">
-                <h5 id="previous_search_one_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_one_traffic_rating"></p>
-                <p id="previous_search_one_air_quality"></p>
-            </div>
-            <div id="previous_search_two">
-                <h5 id="previous_search_two_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_two_traffic_rating">Traffic Rating: </p>
-                <p id="previous_search_two_air_quality">Air Quality Index: </p>
-            </div>
-            <div id="previous_search_three">
-                <h5 id="previous_search_three_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_three_traffic_rating">Traffic Rating: </p>
-                <p id="previous_search_three_air_quality">Air Quality Index: </p>
-            </div>
-            <div id="previous_search_four">
-                <h5 id="previous_search_four_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_four_traffic_rating">Traffic Rating: </p>
-                <p id="previous_search_four_air_quality">Air Quality Index: </p>
-            </div>
-        </section>
 
     <!-- SEARCH SECTION - Previous Searches -->
     <section id="previous_search">
-      <img
-        class="main_logo"
-        src="assets/images/BIKEBUDDY LOGO WHITE.png"
-        alt=""
-      />
+      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
+      <img class="cyclist" src="/assets/images/Cyclist.png" alt="" />
+      <h2>Search for a place</h2>
+      <p>Search your area below for route information, air quality & more.</p>
+      <input id="search_input" type="text" />
+      <button id="searchBtn">Search</button>
+      <h2>Previous searches</h2>
+      <hr />
+      <div id="previous_search_one">
+        <h5 id="previous_search_one_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_one_traffic_rating"></p>
+        <p id="previous_search_one_air_quality"></p>
+      </div>
+      <div id="previous_search_two">
+        <h5 id="previous_search_two_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_two_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_two_air_quality">Air Quality Index:</p>
+      </div>
+      <div id="previous_search_three">
+        <h5 id="previous_search_three_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_three_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_three_air_quality">Air Quality Index:</p>
+      </div>
+      <div id="previous_search_four">
+        <h5 id="previous_search_four_h5">London, UK</h5>
+        <hr />
+        <p id="previous_search_four_traffic_rating">Traffic Rating:</p>
+        <p id="previous_search_four_air_quality">Air Quality Index:</p>
+      </div>
+    </section>
+
+    <!-- SEARCH SECTION - Previous Searches -->
+    <section id="previous_search">
+      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
       <img class="cyclist" src="/assets/images/Cyclist.png" alt="" />
       <h2>Search for a place</h2>
       <p>Search your area below for route information, air quality & more.</p>
@@ -151,7 +126,6 @@
       </div>
     </section>
 
-
     <!-- SEARCH A PLACE - From and To -->
     <!-- THIS HAS CHANGED FROM ORIGINAL DESIGN FROM AND TO INCLUDED WITH RESULTS COMMENTED OUT JUST IN CASE TO REVERT BACK -->
     <!-- <section id="search_place">
@@ -177,36 +151,25 @@
       <div id="aqi"></div>
       <div id="weather">Weather</div>
 
+      <div id="map"></div>
+      <div class="pointer"></div>
+      <button id="current_location"><img src="" alt="" /></button>
 
-            <div id="map"></div>
-            <div class='pointer'></div>
-            <button id="current_location"><img src="" alt=""></button>
-
-      <img
-        class="main_logo"
-        src="assets/images/BIKEBUDDY LOGO WHITE.png"
-        alt=""
-      />
-
+      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
 
       <div id="map"></div>
-      
     </section>
 
     <section class="scroll_sec">
       <div class="scroll_tips">
         <h4>
           BikeBuddy Cycle Tips:
-          <img class="icon" src="assets/images/bicycle.png" /> Dont cycle down
-          stairs! <img class="icon" src="assets/images/bicycle.png" /> Keep 2
-          hands on the wheel!
-          <img class="icon" src="assets/images/bicycle.png" /> Always wear a
-          helmet! <img class="icon" src="assets/images/bicycle.png" /> Use
-          lights when cycling at night!
-          <img class="icon" src="assets/images/bicycle.png" /> Park your bike
-          responsibily!
-          <img class="icon" src="assets/images/bicycle.png" /> Listen to your
-          parents!
+          <img class="icon" src="assets/images/bicycle.png" /> Dont cycle down stairs!
+          <img class="icon" src="assets/images/bicycle.png" /> Keep 2 hands on the wheel!
+          <img class="icon" src="assets/images/bicycle.png" /> Always wear a helmet!
+          <img class="icon" src="assets/images/bicycle.png" /> Use lights when cycling at night!
+          <img class="icon" src="assets/images/bicycle.png" /> Park your bike responsibily!
+          <img class="icon" src="assets/images/bicycle.png" /> Listen to your parents!
           <img class="icon" src="assets/images/bicycle.png" />
         </h4>
       </div>
@@ -224,6 +187,8 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.68.0/dist/L.Control.Locate.min.js"></script>
     <!-- Easy Button Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <!-- Polyline Animation -->
+    <script src="https://unpkg.com/leaflet.polyline.snakeanim@0.2.0/L.Polyline.SnakeAnim.js"></script>
     <!-- JQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Search -->
