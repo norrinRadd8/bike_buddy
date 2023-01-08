@@ -25,7 +25,7 @@ body {
   width: 400px;
 }
 
-h1,
+.text,
 p {
   color: white;
 }
@@ -38,4 +38,22 @@ p {
 .routes {
   background-color: blue;
   border-radius: 3%;
+}
+
+.popular_routes {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.points {
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+.popular {
+  font-size: medium;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.card {
+  height: 150px;
 }

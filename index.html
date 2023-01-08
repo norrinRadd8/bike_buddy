@@ -39,9 +39,9 @@
           <div class="row main-section d-flex justify-content-evenly">
    
             <div class="col-4">
-              <h1 class ="h1">Welcome to BikeBuddy</h1>
+              <h1 class ="text">Welcome to BikeBuddy</h1>
                <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
-               <button class="btn">Get Started</button>
+               <button type="button" class="btn btn-primary">Get Started</button>
             </div>
             <div class= "col-6">
                 <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
@@ -57,23 +57,24 @@
           <div class="container">
             <div class ="card routes" style="height: 400px">
               <div class="card-body">
+                <h2 class="points text-center">...</h2>
 
-               <div class = "row">
-
-               <div class="col-6">
+               <div class = "row d-flex align-items-between">
+                
+                <div class="col-6">
                   <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
                 </div>
 
-                <div class="col-4">
-                  <h3>Popular Routes In Your Area</h3>
-                    <div class = "row d-flex justify-content-evenly ">
+                <div class="col-6">
+                  <h3 class="popular text-center">Popular Routes In Your Area</h3>
+                    <div class = "row d-flex justify-content-evenly">
                      <div class="col-md-4" id="popular_one">
-                       <div class="card"style="height: 100px">
+                       <div class="card">
                         <div class="card-body"></div>
                        </div>
                       </div> 
                       <div class="col-md-4" id="popular_two">
-                       <div class="card" style="height: 100px">
+                       <div class="card">
                          <div class="card-body"></div>
                        </div>
                       </div>
@@ -85,39 +86,82 @@
         </section>
 
         <!-- SEARCH SECTION - Previous Searches -->
-        <section id="previous_search">
-            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-            <img class="cyclist" src="/assets/images/Cyclist.png" alt="">
-            <h2>Search for a place</h2>
-            <p>Search your area below for route information, air quality & more.</p>
-            <input type="text">
-            <button id="search">Search</button>
-            <h2>Previous searches</h2><hr>
-            <div id="previous_search_one">
-                <h5 id="previous_search_one_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_one_traffic_rating"></p>
-                <p id="previous_search_one_air_quality"></p>
-            </div>
-            <div id="previous_search_two">
-                <h5 id="previous_search_two_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_two_traffic_rating">Traffic Rating: </p>
-                <p id="previous_search_two_air_quality">Air Quality Index: </p>
-            </div>
-            <div id="previous_search_three">
-                <h5 id="previous_search_three_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_three_traffic_rating">Traffic Rating: </p>
-                <p id="previous_search_three_air_quality">Air Quality Index: </p>
-            </div>
-            <div id="previous_search_four">
-                <h5 id="previous_search_four_h5">London, UK</h5>
-                <hr>
-                <p id="previous_search_four_traffic_rating">Traffic Rating: </p>
-                <p id="previous_search_four_air_quality">Air Quality Index: </p>
-            </div>
+        <section class="previous" id="previous_search">
+          <div class="container">
+            <div class="row d-flex">
+              <div class="col">
+                <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+              <div>
+              <div class="col text-center">
+                <img class="cyclist" src="assets/images/Cyclist.png" alt="">
+                <h2 class="text">Search for a place</h2>
+                <p>Search your area below for route information, air quality & more.</p>
+                <input type="text">
+              </div>  
+              <div class="col text-center">
+                <button type="button" class="btn btn-primary" id="search">Search</button>
+              </div>
+              <div class="col text-center">
+                <h2 class="text">Previous searches</h2>
+              </div>  
+            </div> 
+          </div>
+
+          <div class="container">
+            <div class="row d-flex justify-content-evenly">
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-body text-center"></div>
+                </div> 
+              </div>
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-body text-center"></div> 
+                </div>
+              </div>  
+
+              <div class="col-md-2">
+                <div class="card">
+                  <div class="card-body text-center"></div>
+                </div>  
+              </div> 
+
+            </div>  
+          </div>    
         </section>
+
+
+
+
+              <div id="previous_search_one">
+                    <h5 id="previous_search_one_h5">London, UK</h5>
+                    <hr>
+                    <p id="previous_search_one_traffic_rating"></p>
+                    <p id="previous_search_one_air_quality"></p>
+                </div>
+                <div id="previous_search_two">
+                    <h5 id="previous_search_two_h5">London, UK</h5>
+                    <hr>
+                    <p id="previous_search_two_traffic_rating">Traffic Rating: </p>
+                    <p id="previous_search_two_air_quality">Air Quality Index: </p>
+                </div>
+                <div id="previous_search_three">
+                    <h5 id="previous_search_three_h5">London, UK</h5>
+                    <hr>
+                    <p id="previous_search_three_traffic_rating">Traffic Rating: </p>
+                    <p id="previous_search_three_air_quality">Air Quality Index: </p>
+                </div>
+                <div id="previous_search_four">
+                    <h5 id="previous_search_four_h5">London, UK</h5>
+                    <hr>
+                    <p id="previous_search_four_traffic_rating">Traffic Rating: </p>
+                    <p id="previous_search_four_air_quality">Air Quality Index: </p>
+                </div>
+               
+          
+           
+    
 
         <!-- SEARCH A PLACE - From and To -->
         <!-- THIS HAS CHANGED FROM ORIGINAL DESIGN FROM AND TO INCLUDED WITH RESULTS COMMENTED OUT JUST IN CASE TO REVERT BACK -->
