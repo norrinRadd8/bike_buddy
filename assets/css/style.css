@@ -1,17 +1,41 @@
 body {
-    background-image: url('/assets/images/Background.png');
+  background-image: url("../images/Background.png");
 }
 
 .main_logo {
-    width: 10%;
+  width: 10%;
 }
 
 .cyclist {
-    width: 7%;
+  width: 7%;
 }
 
-#map { 
-height: 480px; 
-width: 1024px
+#map {
+  height: 480px;
+  width: 1024px;
 }
 
+.container {
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.col-6 .main_logo {
+  height: 220px;
+  width: 400px;
+}
+
+h1,
+p {
+  color: white;
+}
+
+.btn {
+  background-color: orange;
+  color: white;
+}
+
+.routes {
+  background-color: blue;
+  border-radius: 3%;
+}
