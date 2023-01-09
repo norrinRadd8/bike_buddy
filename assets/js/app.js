@@ -12,7 +12,6 @@ var isRouteDrawn = false; // to determine whether a route is drawn or not, defau
 var country;
 var city;
 var AQI;
-
 var country;
 var weatherRouteData;
 
@@ -116,15 +115,8 @@ function saveRoute(city, country, street, postalCode) {
     weather: weatherRouteData, 
     latlngs: routeLine._latlngs,
   };
-  
-  // Add newly saved routeData to the beginning of the array
-
-    weather: "Current Weather variable",
-    latlngs: routeLine._latlngs, // Coordinates of each point used to draw the route
-  };
 
   // Add newly saved routeData to the beginning of the savedRouteData array
-
   savedRouteData.unshift(routeData);
 
   // And keep only the first 4 elements
@@ -367,31 +359,14 @@ function displayWeatherIcon(city) {
             weatherRouteData = currentWeather.weather[0].icon
             console.log(weatherRouteData)
            return weatherId.append(`
-
-var iconUrl = "https://openweathermap.org/img/w/";
-var weatherId = $("#weather");
-var city = "London";
-
-function displayWeatherIcon() {
-  $.get(currentURL + `q=${city}`).then(function (currentWeather) {
-    // console.log(currentWeather);
-
-    weatherId.append(`
-
             <div>
                 <h3><img src="${iconUrl + currentWeather.weather[0].icon + ".png"}" alt="">
                 </h3>
             </div>
-
             `)     
         })
         return weatherRouteData
       } 
-      
-            `);
-  });
-}
-
 
 // || INITIALISE THE PAGE
 function init() {
