@@ -21,12 +21,12 @@
 
   <p align="center">
   <br/>
-    With Bike Buddy, parents and guardians can trust that their children are cycling on the safest routes possible, giving them the peace of mind they deserve.
+    Bike Buddy ensures that your child's cycling adventures are as safe as can be, giving you the ultimate peace of mind. With its cutting-edge route and mapping optimisation technology, you can trust that your little ones are always cycling on the safest roads available. Give yourself the gift of worry-free afternoons and let Bike Buddy be your go-to companion for all things cycling-related.
     <br />
     <a href="https://github.com/norrinRadd8/bike_buddy"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/norrinRadd8/bike_buddy">View Demo</a>
+    <a href="https://github.com/norrinRadd8/bike_buddy">View Live Website</a>
     ·
     <a href="https://github.com/norrinRadd8/bike_buddy/issues">Report Bug</a>
     ·
@@ -42,16 +42,17 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#user-story">User Story</a></li>
+        <li><a href="#description">Description</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+        <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Functionality</a></li>
+        <li><a href="#installation">Mobile Responsive</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -76,37 +77,19 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
+### User Story
 
-## Getting Started
+```
+AS a concerned parent,
+I WANT to easily plot the safest and most efficient cycling routes for my children,
+SO THAT I can have peace of mind while they are cycling on the road
+```
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Prerequisites
+### Description
 
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/norrinRadd8/bike_buddy.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
-   ```
+Include description/summary here
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -114,9 +97,41 @@ This is an example of how to list things you need to use the software and how to
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+- Description of what the code is doing
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+```
+Code Example
+```
+
+- Description of what the code is doing
+
+```
+Code Example
+```
+
+- Description of what the code is doing
+
+```
+Code Example
+```
+
+_For more examples, please refer to the [Documentation](https://github.com/norrinRadd8/bike_buddy/blob/main/assets/js/app.js)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Functionality
+
+- The following animation demonstrates the applications functionality
+
+  ![Functionality Gif](assets/images/functionality.gif)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Mobile Responsive
+
+- As demonstrated in the screenshot below, this application is designed to be responsive and adjust seamlessly to fit various screen sizes
+
+  ![Responsiveness Screenshot](assets/images/responsive-screenshot.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,7 +142,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Feature 1
 - [ ] Feature 2
 - [ ] Feature 3
-  - [ ] Nested Feature
+- [ ] Feature 4
+- [ ] Feature 5
 
 See the [open issues](https://github.com/norrinRadd8/bike_buddy/issues) for a full list of proposed features (and known issues).
 
@@ -162,15 +178,15 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 
 ## Contact
 
-<a href="https://www.linkedin.com/in/NAME/">Dan Shipp</a>
+<a href="https://github.com/BrianMillie">Dan Shipp</a>
 
-<a href="https://www.linkedin.com/in/NAME/">Aurelia Stanculea</a>
+<a href="https://github.com/auraely">Aurelia Stanculea</a>
 
-<a href="https://www.linkedin.com/in/NAME/">Hal Wraithe</a>
+<a href="https://github.com/norrinRadd8">Hal Waithe</a>
 
 <a href="https://www.linkedin.com/in/mdyeates/">Michael Yeates</a>
 
-<a href="https://www.linkedin.com/in/NAME/">Hakim Zani</a>
+<a href="https://github.com/dezanidesign">Hakim Zani</a>
 
 Project Link: [https://github.com/norrinRadd8/bike_buddy](https://github.com/norrinRadd8/bike_buddy)
 
