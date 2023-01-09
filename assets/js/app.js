@@ -13,6 +13,10 @@ var country;
 var city;
 var AQI;
 
+var country;
+var weatherRouteData;
+
+
 // var mapLayer = MQ.mapLayer(),
 //   map;
 
@@ -61,8 +65,11 @@ function getRouteData(startLocation, endLocation) {
       // console.log(city);
 
       updateAQI(city);
+      displayWeatherIcon(city);
+
 
       updateResultsPage();
+
     })
     .catch(function (error) {
       console.error("API GEO ERROR", error);
@@ -106,11 +113,18 @@ function saveRoute(city, country, street, postalCode) {
     street: street,
     postCode: postalCode,
     aqi: AQI,
+    weather: weatherRouteData, 
+    latlngs: routeLine._latlngs,
+  };
+  
+  // Add newly saved routeData to the beginning of the array
+
     weather: "Current Weather variable",
     latlngs: routeLine._latlngs, // Coordinates of each point used to draw the route
   };
 
   // Add newly saved routeData to the beginning of the savedRouteData array
+
   savedRouteData.unshift(routeData);
 
   // And keep only the first 4 elements
@@ -285,6 +299,8 @@ function search() {
       // Call the functions to update the data on the page
       updateResultsPage();
       updateAQI(city);
+      displayWeatherIcon(city)
+      
     })
     .addTo(map);
 }
@@ -340,6 +356,18 @@ function updateResultsPage() {
 // DISPLAY WEATHER ICON
 var baseURL = "https://api.openweathermap.org/data/2.5/";
 var currentURL = baseURL + `weather?appid=6dbbcb8584e56ab51c6d42e5b87ce402&units=metric&`;
+var iconUrl = 'https://openweathermap.org/img/w/';
+var weatherId = $('#weather');
+
+
+function displayWeatherIcon(city) {
+  $.get(currentURL + `q=${city}`)
+        .then(function(currentWeather) {
+            console.log(currentWeather)
+            weatherRouteData = currentWeather.weather[0].icon
+            console.log(weatherRouteData)
+           return weatherId.append(`
+
 var iconUrl = "https://openweathermap.org/img/w/";
 var weatherId = $("#weather");
 var city = "London";
@@ -349,19 +377,26 @@ function displayWeatherIcon() {
     // console.log(currentWeather);
 
     weatherId.append(`
+
             <div>
                 <h3><img src="${iconUrl + currentWeather.weather[0].icon + ".png"}" alt="">
                 </h3>
             </div>
+
+            `)     
+        })
+        return weatherRouteData
+      } 
+      
             `);
   });
 }
+
 
 // || INITIALISE THE PAGE
 function init() {
   // Call Functions
   displayMap();
-  displayWeatherIcon();
   displayCurrentLocation();
   search();
   clearRouteButton();
