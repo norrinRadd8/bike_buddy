@@ -1,5 +1,5 @@
 // || GLOBAL VARIABLES
-var map = L.map("map").setView([51.505, -0.09], 2);
+var map = L.map("map").setView([51.505, -0.09], 13);
 var startLocation;
 var endLocation;
 var startMarker;
@@ -44,6 +44,24 @@ function getRouteData(startLocation, endLocation) {
     .catch(function (error) {
       console.error("API ERROR", error);
     });
+
+  // reverse geocode API to get details on clicks
+  $.get(`https://api.tomtom.com/search/2/reverseGeocode/${startLocation}.json?key=${apiKey}`)
+    .then(function (startAddress) {
+      console.log(startAddress);
+      // Extract the city and country from the startAddress
+      city = startAddress.addresses[0].address.municipality;
+      country = startAddress.addresses[0].address.country;
+      street = startAddress.addresses[0].address.street;
+      postalCode = startAddress.addresses[0].address.extendedPostalCode;
+
+      console.log(city);
+      updateResultsPage();
+      updateAQI(city);
+    })
+    .catch(function (error) {
+      console.error("API GEO ERROR", error);
+    });
 }
 
 function saveButton() {
@@ -58,14 +76,14 @@ function saveButton() {
         icon: "fas fa-save",
         title: "Save route",
         onClick: function () {
-          saveRoute(city, country);
+          saveRoute(city, country, street, postalCode);
         },
       },
     ],
   }).addTo(map);
 }
 
-function saveRoute(city, country) {
+function saveRoute(city, country, street, postalCode) {
   if (!isRouteDrawn) return;
 
   console.log(city);
@@ -74,6 +92,8 @@ function saveRoute(city, country) {
   var routeData = {
     city: city,
     country: country,
+    street: street,
+    postCode: postalCode,
     aqi: AQI,
     weather: "Current Weather variable", // update when completed
     latlngs: routeLine._latlngs,
@@ -131,6 +151,11 @@ function displayCurrentLocation() {
       },
     })
     .addTo(map);
+  map.on("locationfound", function (location) {
+    currentLocation = location.latlng.lat + "," + location.latlng.lng;
+
+    getRouteData(currentLocation);
+  });
 }
 
 function clearRoute(clearRouteButton) {
@@ -207,34 +232,32 @@ function search() {
     .on("markgeocode", function (e) {
       console.log(e);
 
-      city = e.geocode.properties.address.city;
-      country = e.geocode.properties.address.country;
-
-      console.log(city);
-      console.log(country);
-
-      updateAQI(city);
-
       var bbox = e.geocode.bbox;
 
       var poly = L.polygon([bbox.getSouthEast(), bbox.getNorthEast(), bbox.getNorthWest(), bbox.getSouthWest()]).addTo(
         map
       );
       map.fitBounds(poly.getBounds());
+
+      city = e.geocode.properties.address.city;
+      country = e.geocode.properties.address.country;
+      street = "Not available";
+      postalCode = "Not Available";
+
+      // Update the page with the new data
+      updateResultsPage();
+      updateAQI(city);
     })
     .addTo(map);
 }
 
-function updateAQI(newCity) {
-  city = newCity;
+function updateAQI(city) {
   $.get(url + city + url2).then(function (currentData) {
     console.log(currentData);
 
-    // update the results page info
-    $("#address_title").text(`${city}, ${country}`);
-    $("#aqi").text(`(Test AQI): ${currentData.data.aqi}`);
-
     AQI = currentData.data.aqi;
+    $("#aqi").text(`(Test AQI): ${AQI}`);
+
     console.log(AQI);
 
     if (AQI <= 50) {
@@ -249,6 +272,11 @@ function updateAQI(newCity) {
       $("#qualityBox").css({ backgroundColor: "red", color: "white" });
     }
   });
+}
+
+function updateResultsPage() {
+  $("#address_title").text(`${city}, ${country}`);
+  $("#address").text(`${street}, ${postalCode}`);
 }
 
 // || INITIALISE THE PAGE
