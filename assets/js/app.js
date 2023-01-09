@@ -15,6 +15,8 @@ var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
 var city;
 var AQI;
 var country;
+var weatherRouteData;
+console.log(weatherRouteData)
 
 function displayMap() {
   // Add a tile layer to the map
@@ -58,6 +60,7 @@ function getRouteData(startLocation, endLocation) {
       console.log(city);
       updateResultsPage();
       updateAQI(city);
+      displayWeatherIcon(city);
     })
     .catch(function (error) {
       console.error("API GEO ERROR", error);
@@ -95,10 +98,10 @@ function saveRoute(city, country, street, postalCode) {
     street: street,
     postCode: postalCode,
     aqi: AQI,
-    weather: "Current Weather variable", // update when completed
+    weather: weatherRouteData, // update when completed
     latlngs: routeLine._latlngs,
   };
-
+  
   // Add newly saved routeData to the beginning of the array
   savedRouteData.unshift(routeData);
 
@@ -251,6 +254,8 @@ function search() {
       // Update the page with the new data
       updateResultsPage();
       updateAQI(city);
+      displayWeatherIcon(city)
+      
     })
     .addTo(map);
 }
@@ -288,27 +293,30 @@ var baseURL = 'https://api.openweathermap.org/data/2.5/';
 var currentURL = baseURL + `weather?appid=6dbbcb8584e56ab51c6d42e5b87ce402&units=metric&`;
 var iconUrl = 'https://openweathermap.org/img/w/';
 var weatherId = $('#weather');
-var city = 'London';
 
-function displayWeatherIcon() {
+
+function displayWeatherIcon(city) {
   $.get(currentURL + `q=${city}`)
         .then(function(currentWeather) {
             console.log(currentWeather)
-          
-            weatherId.append(`
+            weatherRouteData = currentWeather.weather[0].icon
+            console.log(weatherRouteData)
+           return weatherId.append(`
             <div>
                 <h3><img src="${iconUrl + currentWeather.weather[0].icon + '.png'}" alt="">
                 </h3>
             </div>
-            `)  
+            `) 
+            
         })
-      }
-
+        return weatherRouteData
+      
+      } 
+      
 // || INITIALISE THE PAGE
 function init() {
   // Call Functions
   displayMap();
-  displayWeatherIcon();
   displayCurrentLocation();
   search();
   clearRouteButton();
