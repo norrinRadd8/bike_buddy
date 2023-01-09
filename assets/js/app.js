@@ -1,21 +1,22 @@
 // || GLOBAL VARIABLES
+
+// Initialise the map and set the initial view when page is first loaded
 var map = L.map("map").setView([51.505, -0.09], 13);
+
 var startLocation;
 var endLocation;
 var startMarker;
 var endMarker;
 var routeLine;
-var isRouteDrawn = false;
+var isRouteDrawn = false; // to determine whether a route is drawn or not, default false
+var country;
+var city;
+var AQI;
+
 // var mapLayer = MQ.mapLayer(),
 //   map;
 
-// VARIABLES FOR AQI (Air Quality Index)
-var url = "http://api.waqi.info/feed/";
-var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
-var city;
-var AQI;
-var country;
-
+// Displays the map/tile layer to the map
 function displayMap() {
   // Add a tile layer to the map
   L.tileLayer("https://{s}.tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token={accessToken}", {
@@ -28,6 +29,7 @@ function displayMap() {
   }).addTo(map);
 }
 
+// Gets data for the route from TOMTOM API's
 function getRouteData(startLocation, endLocation) {
   var apiKey = "7kW5591HWQBXAVyMwGHUlDFNjWbvrhTF";
   var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
@@ -37,33 +39,37 @@ function getRouteData(startLocation, endLocation) {
   // Retrieve the route data from TOMTOM
   $.get(calculateRouteURL)
     .then(function (routeData) {
-      // Pass route data to displayRoute()
+      // Pass route data to other Functions
       displayRoute(routeData);
-      displayRouteDetails(routeData);
+      // displayRouteDetails(routeData);
     })
     .catch(function (error) {
       console.error("API ERROR", error);
     });
 
-  // reverse geocode API to get details on clicks
+  // Reverse geocode the start location to get address details (when a route is plotted - the startLocation is the start of the route)
   $.get(`https://api.tomtom.com/search/2/reverseGeocode/${startLocation}.json?key=${apiKey}`)
     .then(function (startAddress) {
-      console.log(startAddress);
-      // Extract the city and country from the startAddress
+      // console.log(startAddress);
+
+      // Extracts location data from startAddress
       city = startAddress.addresses[0].address.municipality;
       country = startAddress.addresses[0].address.country;
       street = startAddress.addresses[0].address.street;
       postalCode = startAddress.addresses[0].address.extendedPostalCode;
 
-      console.log(city);
-      updateResultsPage();
+      // console.log(city);
+
       updateAQI(city);
+
+      updateResultsPage();
     })
     .catch(function (error) {
       console.error("API GEO ERROR", error);
     });
 }
 
+// Creates the saveButton on the map to save the current route and location details on click
 function saveButton() {
   var saveButton = L.easyButton({
     position: "bottomright",
@@ -83,31 +89,38 @@ function saveButton() {
   }).addTo(map);
 }
 
+// Saves the current route when drawn and location data when the saveButton is clicked
 function saveRoute(city, country, street, postalCode) {
+  // If route is not currently drawn, exit the function
   if (!isRouteDrawn) return;
 
-  console.log(city);
+  // console.log(city);
+
+  // If a route is drawn, get route data or an empty array if there is none
   var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
 
+  // A routeData object to save route and location data to localStorage
   var routeData = {
     city: city,
     country: country,
     street: street,
     postCode: postalCode,
     aqi: AQI,
-    weather: "Current Weather variable", // update when completed
-    latlngs: routeLine._latlngs,
+    weather: "Current Weather variable",
+    latlngs: routeLine._latlngs, // Coordinates of each point used to draw the route
   };
 
-  // Add newly saved routeData to the beginning of the array
+  // Add newly saved routeData to the beginning of the savedRouteData array
   savedRouteData.unshift(routeData);
 
   // And keep only the first 4 elements
   savedRouteData = savedRouteData.slice(0, 4);
 
+  // Save the savedRouteData to localStorage
   localStorage.setItem("routeData", JSON.stringify(savedRouteData));
 }
 
+// Creates a route on the map
 function displayRoute(routeData) {
   // Extract the coordinates from route data
   var coordinates = routeData.routes[0].legs[0].points.map(function (coordinate) {
@@ -115,10 +128,11 @@ function displayRoute(routeData) {
     return L.latLng(coordinate.latitude, coordinate.longitude);
   });
 
-  // Create a routeLine from the coordinates and add it to the map
+  // Assign, L.polyline used to draw the line on the map to routeLine variable
   routeLine = L.polyline(coordinates, { color: "blue" }).addTo(map).snakeIn();
 }
 
+// This Function handles the click event on the map
 function onRouteClick(event) {
   // If a route is already drawn, display a popup and exit the function
   if (isRouteDrawn) {
@@ -137,11 +151,14 @@ function onRouteClick(event) {
   endLocation = event.latlng.lat + "," + event.latlng.lng;
   endMarker = L.marker(event.latlng).addTo(map);
 
+  // Get the route data from the Tom Tom calculate route API using the start and end locations
   getRouteData(startLocation, endLocation);
 
+  // Set to true to show that a route is currently drawn
   isRouteDrawn = true;
 }
 
+// Creates a control button on the map to display current location
 function displayCurrentLocation() {
   L.control
     .locate({
@@ -151,15 +168,25 @@ function displayCurrentLocation() {
       },
     })
     .addTo(map);
+  // When a location is found, get the current location coords, e.g lat,lng
   map.on("locationfound", function (location) {
-    currentLocation = location.latlng.lat + "," + location.latlng.lng;
+    // console.log(location);
 
-    getRouteData(currentLocation);
+    // Get the lat and lng of current location and assign it to a variable
+    currentLocationCoords = location.latlng.lat + "," + location.latlng.lng;
+    // console.log(city);
+
+    // This is causing the API ERROR, because getRouteData() needs a start and end location...
+    getRouteData(currentLocationCoords);
   });
 }
 
+// Clears the route and markers when the clearRouteButton is clicked
 function clearRoute(clearRouteButton) {
+  // If route is not currently drawn, exit the function
   if (!isRouteDrawn) return;
+
+  // If route is drawn,
 
   // Remove the routeLine and markers from the map
   if (routeLine) map.removeLayer(routeLine);
@@ -191,23 +218,21 @@ function clearRouteButton() {
         icon: "fas fa-trash",
         title: "Clear route",
         onClick: function () {
-          clearRoute(clearButton);
+          clearRoute(clearButton); // call the clearRoute Function on click
         },
       },
     ],
   }).addTo(map);
 }
 
-function displayRouteDetails(routeData) {
-  var routeDistance = routeData.routes[0].summary.lengthInMeters;
-  var routeDuration = routeData.routes[0].summary.travelTimeInSeconds;
-  var arrivalTime = routeData.routes[0].summary.arrivalTime;
-  var departureTime = routeData.routes[0].summary.departureTime;
+// function displayRouteDetails(routeData) {
+//   var routeDistance = routeData.routes[0].summary.lengthInMeters;
+//   var routeDuration = routeData.routes[0].summary.travelTimeInSeconds;
+//   var arrivalTime = routeData.routes[0].summary.arrivalTime;
+//   var departureTime = routeData.routes[0].summary.departureTime;
 
-  // Data for route to display on our page, if someone gets the chance when the design is done
-
-}
-
+// Data for route to display on our page, if someone gets the chance when the design is done
+// }
 
 // function trafficMap() {
 //   L.control
@@ -226,15 +251,16 @@ function displayRouteDetails(routeData) {
 //     .addTo(map);
 // }
 
-var placeHolder = $('#placeholder')
-console.log(placeHolder)
-// Search control within map
+var placeHolder = $("#placeholder");
+// console.log(placeHolder);
+
+// Function to search for a location and display the results on the page WHEN a search is completed
 function search() {
   var geocoder = L.Control.geocoder({
     defaultMarkGeocode: false,
-  })
+  }) // When a location is found, display it on the map and update the page
     .on("markgeocode", function (e) {
-      console.log(e);
+      // console.log(e);
 
       var bbox = e.geocode.bbox;
 
@@ -243,12 +269,20 @@ function search() {
       );
       map.fitBounds(poly.getBounds());
 
-      city = e.geocode.properties.address.city;
-      country = e.geocode.properties.address.country;
-      street = "Not available";
-      postalCode = "Not Available";
+      // If city or country data is not available, set the value to "Location Unavailable"
+      if (typeof city !== "undefined" || typeof country !== "undefined") {
+        city = e.geocode.properties.address.city;
+        country = e.geocode.properties.address.country;
+      } else {
+        city = "Location Unavailable";
+      }
 
-      // Update the page with the new data
+      // There is no street or postalCode available with Search
+      if (typeof street == "undefined" && typeof postalCode == "undefined") {
+        street = "Address Unavailable";
+      }
+
+      // Call the functions to update the data on the page
       updateResultsPage();
       updateAQI(city);
     })
@@ -256,13 +290,21 @@ function search() {
 }
 
 function updateAQI(city) {
+  var url = "http://api.waqi.info/feed/";
+  var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
+
   $.get(url + city + url2).then(function (currentData) {
-    console.log(currentData);
-
     AQI = currentData.data.aqi;
-    $("#aqi").text(`(Test AQI): ${AQI}`);
+    if (AQI === "undefined") {
+      AQI = "Unavailable";
+    }
+    if (typeof AQI !== "undefined") {
+      $("#aqi").text(`(Test AQI): ${AQI}`);
+    } else {
+      $("#aqi").text("AQI Unavailable");
+    }
 
-    console.log(AQI);
+    // console.log(AQI);
 
     if (AQI <= 50) {
       $("#qualityBox").css({ backgroundColor: "green", color: "white" });
@@ -278,31 +320,42 @@ function updateAQI(city) {
   });
 }
 
+// Function to update the location data on the page (for when a route is plotted rather than a location searched)
 function updateResultsPage() {
-  $("#address_title").text(`${city}, ${country}`);
-  $("#address").text(`${street}, ${postalCode}`);
+  // If city or country data is not available, set the value to "Location Unavailable".
+  if (typeof city !== "undefined" && typeof country !== "undefined") {
+    $("#address_title").text(`${city}, ${country}`);
+  } else {
+    $("#address_title").text(`Location Unavailable`);
+  }
+
+  // If post code and street is not available, set the value to "Address Unavailable"
+  if (typeof postalCode !== "undefined" && typeof street !== "undefined") {
+    $("#address").text(`${street}, ${postalCode}`);
+  } else {
+    $("#address").text(`Address Unavailable`);
+  }
 }
 
 // DISPLAY WEATHER ICON
-var baseURL = 'https://api.openweathermap.org/data/2.5/';
+var baseURL = "https://api.openweathermap.org/data/2.5/";
 var currentURL = baseURL + `weather?appid=6dbbcb8584e56ab51c6d42e5b87ce402&units=metric&`;
-var iconUrl = 'https://openweathermap.org/img/w/';
-var weatherId = $('#weather');
-var city = 'London';
+var iconUrl = "https://openweathermap.org/img/w/";
+var weatherId = $("#weather");
+var city = "London";
 
 function displayWeatherIcon() {
-  $.get(currentURL + `q=${city}`)
-        .then(function(currentWeather) {
-            console.log(currentWeather)
-          
-            weatherId.append(`
+  $.get(currentURL + `q=${city}`).then(function (currentWeather) {
+    // console.log(currentWeather);
+
+    weatherId.append(`
             <div>
-                <h3><img src="${iconUrl + currentWeather.weather[0].icon + '.png'}" alt="">
+                <h3><img src="${iconUrl + currentWeather.weather[0].icon + ".png"}" alt="">
                 </h3>
             </div>
-            `)  
-        })
-      }
+            `);
+  });
+}
 
 // || INITIALISE THE PAGE
 function init() {
@@ -314,9 +367,8 @@ function init() {
   clearRouteButton();
   saveButton();
   // trafficMap();
-  
 
-  // Click Events
+  // Click Event, pass in onRouteClick function
   map.on("click", onRouteClick);
 }
 
