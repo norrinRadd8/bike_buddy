@@ -129,7 +129,9 @@ function displayRouteDetails(routeData) {
   var departureTime = routeData.routes[0].summary.departureTime;
 
   // Data for route to display on our page, if someone gets the chance when the design is done
+
 }
+
 
 // function trafficMap() {
 //   L.control
@@ -148,6 +150,8 @@ function displayRouteDetails(routeData) {
 //     .addTo(map);
 // }
 
+var placeHolder = $('#placeholder')
+console.log(placeHolder)
 // Search control within map
 function search() {
   var geocoder = L.Control.geocoder({
@@ -190,14 +194,37 @@ $.get(url + city + url2).then(function (currentData) {
   }
 });
 
+// DISPLAY WEATHER ICON
+var baseURL = 'https://api.openweathermap.org/data/2.5/';
+var currentURL = baseURL + `weather?appid=6dbbcb8584e56ab51c6d42e5b87ce402&units=metric&`;
+var iconUrl = 'https://openweathermap.org/img/w/';
+var weatherId = $('#weather');
+var city = 'London';
+
+function displayWeatherIcon() {
+  $.get(currentURL + `q=${city}`)
+        .then(function(currentWeather) {
+            console.log(currentWeather)
+          
+            weatherId.append(`
+            <div>
+                <h3><img src="${iconUrl + currentWeather.weather[0].icon + '.png'}" alt="">
+                </h3>
+            </div>
+            `)  
+        })
+      }
+
 // || INITIALISE THE PAGE
 function init() {
   // Call Functions
   displayMap();
+  displayWeatherIcon();
   displayCurrentLocation();
   search();
   createClearRouteButton();
   // trafficMap();
+  
 
   // Click Events
   map.on("click", onRouteClick);
