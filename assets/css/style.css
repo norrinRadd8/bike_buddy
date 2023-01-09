@@ -10,22 +10,23 @@ body {
     width: 7%;
 }
 
-#map { 
-height: 480px; 
-width: 1024px
+#map {
+    height: 480px;
+    width: 1024px
 }
+
 /* new css file */
 
-.scroll_sec{
+.scroll_sec {
     position: relative;
-    width:100%;
+    width: 100%;
     height: 6vh;
-    display:flex;
+    display: flex;
     overflow: hidden;
 
 }
 
-.scroll_tips{
+.scroll_tips {
     position: relative;
     width: 100%;
     background: lightblue;
@@ -33,43 +34,50 @@ width: 1024px
 
 }
 
-h4{
+/* animate for 30 seconds on a loop */
+h4 {
     position: absolute;
     white-space: nowrap;
-    animation: animate 20s linear infinite
+    animation: animate 30s linear infinite
 }
 
-.icon{
-    height: 1rem;
+
+.icon {
+    /*scale image as mirror so reversed icon facing left not right*/
+    height: 2rem;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 
 }
-@keyframes animate{
 
-    0%
-    {
-        transform: translate(150%);
+@keyframes animate {
+
+    /* animation starting point 5% of length visable at start, 100% not visable by end */
+    0% {
+        transform: translate(95%);
     }
-    100%
-    {
+
+    100% {
         transform: translate(-100%);
     }
 }
 
-#mapSearchContainer{
-    position:fixed;
-    top:20px;
+#mapSearchContainer {
+    position: fixed;
+    top: 20px;
     right: 40px;
-    height:30px;
-    width:180px;
-    z-index:110;
-    font-size:10pt;
-    color:#0e0d0d;
-    border:solid 1px #bbb;
-    background-color:#f8f8f8;
-  }
-  .pointer{
-    position:absolute;
-    top:86px;
-    left:60px;
-    z-index:99999;
-  }
+    height: 30px;
+    width: 180px;
+    z-index: 110;
+    font-size: 10pt;
+    color: #0e0d0d;
+    border: solid 1px #bbb;
+    background-color: #f8f8f8;
+}
+
+.pointer {
+    position: absolute;
+    top: 86px;
+    left: 60px;
+    z-index: 99999;
+}
