@@ -101,7 +101,7 @@
       </div> 
     </section>
 
-    <!-- SEARCH SECTION - Previous Searches -->
+    <!-- SEARCH SECTION - Previous Searches 
     <section class="previous" id="previous_search">
       <div class="container">
         <div class="row d-flex">
@@ -172,9 +172,9 @@
         <p id="previous_search_four_traffic_rating">Traffic Rating:</p>
         <p id="previous_search_four_air_quality">Air Quality Index:</p>
       </div>
-    </section>
+    </section>  -->
 
-    <!-- SEARCH SECTION - Previous Searches -->
+    <!-- SEARCH SECTION - Previous Searches 
     <section id="previous_search">
       <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
       <img class="cyclist" src="/assets/images/Cyclist.png" alt="" />
@@ -208,7 +208,10 @@
         <p id="previous_search_four_traffic_rating">Traffic Rating:</p>
         <p id="previous_search_four_air_quality">Air Quality Index:</p>
       </div>
-    </section>
+    </section>  -->
+
+
+
 
     <!-- SEARCH A PLACE - From and To -->
     <!-- THIS HAS CHANGED FROM ORIGINAL DESIGN FROM AND TO INCLUDED WITH RESULTS COMMENTED OUT JUST IN CASE TO REVERT BACK -->
@@ -229,21 +232,76 @@
         </section> -->
 
     <!-- SEARCH RESULTS -->
-    <section id="search_result">
-      <h5 id="address_title">London, UK</h5>
-      <p id="address">8 Gordon Street, WC12 5PN</p>
-      <div id="traffic_safety_rating">Traffic Safety Rating</div>
-      <div id="aqi"></div>
-      <div id="weather">Weather</div>
+    <section class ="search" id="search_result">
+      <div class="container search_result">
+        <div class="row d-flex justify-content-between">
+          <div class="col-2">
+            <div class="address">
+              <h5 id="address_title">London, UK</h5>
+              <p id="address">8 Gordon Street, WC12 5PN</p>
+            <div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Traffic
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">text</a></li>
+                  <li><a class="dropdown-item" href="#">text</a></li>
+                  <li><a class="dropdown-item" href="#">text</a></li>
+                </ul>
+              </div>
+                
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Weather
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"></a>text</li>
+                    <li><a class="dropdown-item" href="#"></a>text</li>
+                    <li><a class="dropdown-item" href="#"></a>text</li>
+                  </ul>
+                </div>
+    
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Previous Searches
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </div>
+    
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Air Quality
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"></a></li>
+                    <li><a class="dropdown-item" href="#"></a></li>
+                    <li><a class="dropdown-item" href="#"></a></li>
+                  </ul>
+              </div>
+            </div>
+            
+          <div class="col-10">
+            <div id="map"></div>
+            <div class="pointer"></div>
+            <button id="current_location"><img src="" alt="" /></button>
+          </div>
+        </div>
+      </div>  
+    </section> 
+            
 
-      <div id="map"></div>
-      <div class="pointer"></div>
-      <button id="current_location"><img src="" alt="" /></button>
+           <!-- <div id="traffic_safety_rating">Traffic Safety Rating</div>
+            <div id="aqi"></div>
+            <div id="weather">Weather</div>
+            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
+          </div> -->
 
-      <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
-
-      <div id="map"></div>
-    </section>
+          
 
     <section class="scroll_sec">
       <div class="scroll_tips">
