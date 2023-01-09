@@ -10,10 +10,11 @@ var isRouteDrawn = false;
 //   map;
 
 // VARIABLES FOR AQI (Air Quality Index)
-var AQI;
 var url = "http://api.waqi.info/feed/";
 var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
-var city = "London";
+var city;
+var AQI;
+var country;
 
 function displayMap() {
   // Add a tile layer to the map
@@ -57,28 +58,25 @@ function saveButton() {
         icon: "fas fa-save",
         title: "Save route",
         onClick: function () {
-          saveRoute(saveButton);
+          saveRoute(city, country);
         },
       },
     ],
   }).addTo(map);
 }
 
-function saveRoute() {
+function saveRoute(city, country) {
   if (!isRouteDrawn) return;
 
+  console.log(city);
   var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
 
   var routeData = {
-    location: city, // city needs to be made dynamic based on search
-    aqi: AQI, // same as above
-    weather: "Current Weather variable", // update with variable when completed
+    city: city,
+    country: country,
+    aqi: AQI,
+    weather: "Current Weather variable", // update when completed
     latlngs: routeLine._latlngs,
-    // Add variables below from displayRouteDetails if we get a chance
-    // arrival: arrivalTime,
-    // departure: departureTime,
-    // duration: estimatedTime,
-    // distance: distanceMiles,
   };
 
   // Add newly saved routeData to the beginning of the array
@@ -207,7 +205,18 @@ function search() {
     defaultMarkGeocode: false,
   })
     .on("markgeocode", function (e) {
+      console.log(e);
+
+      city = e.geocode.properties.address.city;
+      country = e.geocode.properties.address.country;
+
+      console.log(city);
+      console.log(country);
+
+      updateAQI(city);
+
       var bbox = e.geocode.bbox;
+
       var poly = L.polygon([bbox.getSouthEast(), bbox.getNorthEast(), bbox.getNorthWest(), bbox.getSouthWest()]).addTo(
         map
       );
@@ -216,32 +225,31 @@ function search() {
     .addTo(map);
 }
 
-// AQI (Air Quality index API) CODE
-$.get(url + city + url2).then(function (currentData) {
-  console.log(currentData);
+function updateAQI(newCity) {
+  city = newCity;
+  $.get(url + city + url2).then(function (currentData) {
+    console.log(currentData);
 
-  $("#aqi").append(`
-  ${city} 
-  <p id="AQIndex"> AQI:${currentData.data.aqi}</p>
-  (Air Quality)
-  
-  `);
+    // update the results page info
+    $("#address_title").text(`${city}, ${country}`);
+    $("#aqi").text(`(Test AQI): ${currentData.data.aqi}`);
 
-  AQI = currentData.data.aqi;
-  console.log(AQI);
+    AQI = currentData.data.aqi;
+    console.log(AQI);
 
-  if (AQI <= 50) {
-    $("#qualityBox").css({ backgroundColor: "green", color: "white" });
-  }
+    if (AQI <= 50) {
+      $("#qualityBox").css({ backgroundColor: "green", color: "white" });
+    }
 
-  if (AQI >= 50) {
-    $("#qualityBox").css({ backgroundColor: "orange", color: "white" });
-  }
+    if (AQI >= 50) {
+      $("#qualityBox").css({ backgroundColor: "orange", color: "white" });
+    }
 
-  if (AQI >= 100) {
-    $("#qualityBox").css({ backgroundColor: "red", color: "white" });
-  }
-});
+    if (AQI >= 100) {
+      $("#qualityBox").css({ backgroundColor: "red", color: "white" });
+    }
+  });
+}
 
 // || INITIALISE THE PAGE
 function init() {
