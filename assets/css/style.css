@@ -36,10 +36,11 @@ width: 1024px
 h4{
     position: absolute;
     white-space: nowrap;
-    animation: animate 20s linear infinite
+    animation: animate 30s linear infinite
 }
 
 .icon{
+    -webkit-box-direction: reverse;
     height: 1rem;
 
 }
