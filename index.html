@@ -50,7 +50,7 @@
     
 
     <!-- MAIN SECTION -->
-    <div class="container" id="main">
+    <div class="container main" id="main">
           
       <div class="row main-section d-flex justify-content-between">
 
@@ -231,68 +231,113 @@
                 <button>Go</button>
         </section> -->
 
-    <!-- SEARCH RESULTS -->
+    <!-- SEARCH RESULTS 
     <section class ="search" id="search_result">
       <div class="container search_result">
         <div class="row d-flex justify-content-between">
-          <div class="col-2">
-            <div class="address">
-              <h5 id="address_title">London, UK</h5>
-              <p id="address">8 Gordon Street, WC12 5PN</p>
-            <div>
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Traffic
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">text</a></li>
-                  <li><a class="dropdown-item" href="#">text</a></li>
-                  <li><a class="dropdown-item" href="#">text</a></li>
-                </ul>
-              </div>
-                
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Weather
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"></a>text</li>
-                    <li><a class="dropdown-item" href="#"></a>text</li>
-                    <li><a class="dropdown-item" href="#"></a>text</li>
-                  </ul>
-                </div>
-    
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Previous Searches
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </div>
-    
-              <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Air Quality
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"></a></li>
-                    <li><a class="dropdown-item" href="#"></a></li>
-                    <li><a class="dropdown-item" href="#"></a></li>
-                  </ul>
-              </div>
+          <div class="col-12 text-center">
+            <h5>Tips</h5>
+          </div>
+            <div class="col-2">
+              <div class="address">
+                <h5 id="address_title">London, UK</h5>
+                <p id="address">8 Gordon Street, WC12 5PN</p>
+              <div> -->
+
+    <section class ="search" id="search_result">
+      <div class="container-fluid">
+        <div class="row flex-nowrap">
+          
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <h5 class="address">London, Uk</h5>
+                 <p class="address">8 Gordon Street, WC12 5PN</p>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Traffic
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Weather
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Air quality
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Previous searches
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                    </ul>
+                  </div>
+                  <hr>
+                  <div class="images">
+                    <img class="cyclist" src="assets/images/Cyclist.png" alt="" />
+                    <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+                  </div>
+                    
             </div>
             
+          </div>
+          <div class="col pt-3">
+            <div id="map"></div>
+          
+          <!--<button id="current_location"><img src="" alt="" /></button> -->
+          </div>
+        </div>
+      </div>
+    </section> 
+
+
+
+
+
+
+
+
+
+
+               <!-- <div class="images">
+                  <img class="cyclist" src="assets/images/Cyclist.png" alt="" />
+                  <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+                </div>
+              </div>
+              
+
           <div class="col-10">
             <div id="map"></div>
             <div class="pointer"></div>
             <button id="current_location"><img src="" alt="" /></button>
           </div>
-        </div>
-      </div>  
-    </section> 
+        </div>  
+          
+      </div>  -->
+    
             
 
            <!-- <div id="traffic_safety_rating">Traffic Safety Rating</div>
