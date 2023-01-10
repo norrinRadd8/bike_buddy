@@ -1,83 +1,162 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
-    background-image: url('/assets/images/Background.png');
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-image: url("../images/Background.png");
 }
 
 .main_logo {
-    width: 10%;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  width: 360px;
+  height: 44px;
 }
 
 .cyclist {
-    width: 7%;
+  width: 40%;
+  margin-top: 30px;
+  margin-left: 50px;
 }
 
 #map {
-    height: 480px;
-    width: 1024px
+  height: 550px;
+  width: 1024px;
 }
 
-/* new css file */
-
-.scroll_sec {
-    position: relative;
-    width: 100%;
-    height: 6vh;
-    display: flex;
-    overflow: hidden;
-
+.container {
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 
-.scroll_tips {
-    position: relative;
-    width: 100%;
-    background: lightblue;
-    overflow: hidden;
-
+.col-6 .main_logo {
+  height: 220px;
+  width: 400px;
+  margin-top: 20px;
 }
 
-/* animate for 30 seconds on a loop */
-h4 {
-    position: absolute;
-    white-space: nowrap;
-    animation: animate 30s linear infinite
+.col-4 {
+  margin-top: 80px;
+}
+.text {
+  color: white;
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 64;
 }
 
-
-.icon {
-    /*scale image as mirror so reversed icon facing left not right*/
-    height: 2rem;
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-
+p {
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 31px;
+  color: white;
+  margin-top: 30px;
 }
 
-@keyframes animate {
-
-    /* animation starting point 5% of length visable at start, 100% not visable by end */
-    0% {
-        transform: translate(95%);
-    }
-
-    100% {
-        transform: translate(-100%);
-    }
+.col-4 .btn {
+  background-color: orange;
+  color: white;
+  margin-top: 50px;
 }
 
-#mapSearchContainer {
-    position: fixed;
-    top: 20px;
-    right: 40px;
-    height: 30px;
-    width: 180px;
-    z-index: 110;
-    font-size: 10pt;
-    color: #0e0d0d;
-    border: solid 1px #bbb;
-    background-color: #f8f8f8;
+.routes {
+  background-color: #006db0;
+  border-radius: 124px;
+  height: 617px;
+  width: 1278px;
 }
 
-.pointer {
-    position: absolute;
-    top: 86px;
-    left: 60px;
-    z-index: 99999;
+.popular_routes {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.dots {
+  color: #ffffff;
+  margin-bottom: 50px;
+}
+.popular {
+  color: #ffffff;
+  margin-bottom: 30px;
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 110.9%;
+}
+
+.col-6 .card {
+  width: 150px;
+  height: 246px;
+  border-radius: 65px;
+}
+
+.col-6 .main_logo {
+  width: 605px;
+  height: 388px;
+}
+
+.col-2 .btn {
+  background-color: #006db0;
+  width: 160px;
+}
+
+.images .main_logo {
+  width: 80%;
+}
+
+.dropdown_menu {
+  width: 100%;
+}
+
+.search {
+  margin-left: 10px;
+}
+
+.col-12 {
+  width: 1440px;
+  height: 23px;
+  left: 0px;
+  top: 0px;
+
+  background: #1285cc;
+}
+
+.address {
+  margin-top: 20px;
+  font-family: Saira;
+  font-size: 14px;
+}
+
+.dropdown .btn {
+  font-family: "Saira";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  text-align: center;
+  background-color: #1285cc;
+  color: #ffffff;
+  width: 150px;
+  margin: 10px;
+}
+
+.col-auto {
+  background-color: darkblue;
+  height: 551px;
+  margin-top: 15px;
+}
+
+.images .main_logo {
+  margin-top: 10px;
+  width: 200px;
+  height: 25px;
 }
