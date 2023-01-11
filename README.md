@@ -100,7 +100,7 @@ SO THAT I can have peace of mind while they are cycling on the road
 
 Bike Buddy is the ultimate tool for parents and guardians looking to keep their children safe while cycling. With its interactive map, families can easily search for a location and plot a safe route. This takes into account various factors such as live traffic levels, available bicycle lanes, and lowest elevation to ensure the most efficient and safest route possible for children on the roads.
 
-But Bike Buddy doesn't stop there - it also provides real-time updates on air quality and weather conditions, so users can stay informed and prepared for their ride. Users have the ability to view their current location and when it comes to saving routes for future reference, Bike Buddy has got you covered with the option to save to local storage. With Bike Buddy, families can confidently enjoy biking together on the safest roads available.
+But Bike Buddy doesn't stop there - it also provides real-time updates on air quality and weather conditions, so users can stay informed and prepared for their ride. Users have the ability to view their current location and with Bike Buddy, families can confidently enjoy biking together on the safest roads available.
 
 ### APIs
 
