@@ -313,6 +313,67 @@ h4 {
   z-index: 99999;
 }
 
+/* Modals */
+
+#greyScreen{
+  background-color: grey;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  position: fixed;
+  top: 0px;
+}
+
+#modal1{
+  position: fixed;
+  background-color: #fefefe;
+  top: 77px;
+  right: 90px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal2{
+  position: fixed;
+  background-color: #fefefe;
+  top: 300px;
+  right: 230px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal3{
+  position: fixed;
+  background-color: #fefefe;
+  top: 177px;
+  right: 40px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal4{
+  position: fixed;
+  background-color: #fefefe;
+  bottom: 30px;
+  right: 70px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal5{
+  position: fixed;
+  background-color: #fefefe;
+  top: 177px;
+  left: 360px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal1:hover, #modal2:hover, #modal3:hover, #modal4:hover, #modal5:hover{
+  background-color: #ececec;
+
+}
+
 /* Media Queries */
 
 /* Mobile */
