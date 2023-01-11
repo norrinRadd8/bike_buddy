@@ -18,29 +18,109 @@ var weatherRouteData;
 var mapLayer = MQ.mapLayer(),
   map;
 
-// Hide & Show Elements
-var page1 = $("#page1");
-var page2 = $("#page2");
 
-page2.hide();
+  // Hide & Show Elements
+  var page1 = $('#page1');
+  var page2 = $('#page2');
+  
+  page2.hide()
+ 
+  $('body').css('overflow','hidden') 
 
-$("body").css("overflow", "hidden");
+  var startBtn = $('#startedButton')
+    startBtn.click(function() {
+    page1.hide(1000)
+    page2.show();
 
-var startBtn = $("#startedButton");
-startBtn.click(function () {
-  page1.hide(1000);
-  page2.show();
+    $('body').css('overflow','hidden') 
 
-  $("body").css("overflow", "hidden");
-});
+  });
 
-var sideLogo = $("#sideLogo");
-sideLogo.click(function () {
-  page1.show(1000);
-  page2.hide();
+  var sideLogo = $('#sideLogo')
+    sideLogo.click(function() {
 
-  document.body.style.overflow = "scroll";
-});
+    page1.show(1000);
+    page2.hide();
+
+    document.body.style.overflow = "scroll";
+  });
+
+
+  // Modal Tooltips
+  var greyScreen = $('#greyScreen');
+  var modal1 = $('#modal1');
+  var modal2 = $('#modal2');
+  var modal3 = $('#modal3');
+  var modal4 = $('#modal4');
+  var modal5 = $('#modal5');
+
+  $('#greyScreen').hide();
+  $('#modal1').hide();
+  $('#modal2').hide();
+  $('#modal3').hide();
+  $('#modal4').hide();
+  $('#modal5').hide();
+
+  function modalScreen() {
+
+    var ls = localStorage.getItem('namespace.visited');
+    if (ls == null) {
+        
+        localStorage.setItem('namespace.visited', 1)
+    }
+    
+    if(ls !== null){
+     
+      return;
+    }
+
+  $('#greyScreen').show();
+  $('#modal1').show();
+  $('#modal2').hide();
+  $('#modal3').hide();
+  $('#modal4').hide();
+  $('#modal5').hide();
+
+modal1.click(function(){
+  $('#modal1').hide();
+  $('#modal2').show();
+
+})
+
+modal2.click(function(){
+  $('#modal2').hide();
+  $('#modal3').show();
+
+})
+
+modal3.click(function(){
+  $('#modal3').hide();
+  $('#modal4').show();
+
+})
+
+modal4.click(function(){
+  $('#modal4').hide();
+  $('#modal5').show();
+
+})
+
+modal5.click(function(){
+  $('#modal1').hide();
+  $('#modal5').hide();
+  $('#greyScreen').hide();
+
+})
+
+  var greyScreen = $('#greyScreen');
+  greyScreen.click(function() {
+   
+
+  })
+
+
+
+};
 
 // Displays the map/tile layer to the map
 function displayMap() {
@@ -139,6 +219,8 @@ function saveRoute(city, country, street, postalCode) {
     weather: weatherRouteData,
     latlngs: routeLine._latlngs,
   };
+
+  
 
   // Add newly saved routeData to the beginning of the savedRouteData array
   savedRouteData.unshift(routeData);
@@ -333,23 +415,23 @@ function updateAQI(city) {
       AQI = "Unavailable";
     }
     if (typeof AQI !== "undefined") {
-      $("#airQualityBox").text(`${AQI}`);
+      $("#aqi").text(`(Test AQI): ${AQI}`);
     } else {
-      $("#airQualityBox").text("AQI Unavailable");
+      $("#aqi").text("AQI Unavailable");
     }
 
     // console.log(AQI);
 
     if (AQI <= 50) {
-      $("#airQualityBox").css({ backgroundColor: "green", color: "white" });
+      $("#qualityBox").css({ backgroundColor: "green", color: "white" });
     }
 
     if (AQI >= 50) {
-      $("#airQualityBox").css({ backgroundColor: "orange", color: "white" });
+      $("#qualityBox").css({ backgroundColor: "orange", color: "white" });
     }
 
     if (AQI >= 100) {
-      $("#airQualityBox").css({ backgroundColor: "red", color: "white" });
+      $("#qualityBox").css({ backgroundColor: "red", color: "white" });
     }
   });
 }
@@ -402,6 +484,7 @@ function init() {
   saveButton();
   trafficMap();
   // displayWeatherIcon(city);
+  modalScreen();
 
   // Click Event, pass in onRouteClick function
   map.on("click", onRouteClick);
@@ -409,13 +492,13 @@ function init() {
 
 init();
 
-//
+// 
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
 for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
+  coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
@@ -425,3 +508,17 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
+
+
+// 
+
+
+
+
+var newRouteData = JSON.parse(localStorage.getItem("routeData"));
+console.log(newRouteData);
+
+$("#airQualityBox").prepend(newRouteData[0].city + "<br>");
+$("#airQualityBox").append("AQI: <br>" + newRouteData[0].aqi);
+// $("#weatherBox").append("<img src="">" iconUrl + newRouteData[0].weather + ".png")
+$("#weatherImage").attr("src", iconUrl + newRouteData[0].weather + ".png")
