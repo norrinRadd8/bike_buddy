@@ -10,13 +10,38 @@ var endMarker;
 var routeLine;
 var isRouteDrawn = false; // to determine whether a route is drawn or not, default false
 var country;
-var city;
+var city = "Leeds";
 var AQI;
 var country;
 var weatherRouteData;
 
-// var mapLayer = MQ.mapLayer(),
-//   map;
+var mapLayer = MQ.mapLayer(),
+  map;
+
+
+  // Hide & Show Elements
+  var page1 = document.getElementById('page1');
+  var page2 = document.getElementById('page2');
+  
+  page2.style.display = "none";
+  document.body.style.overflow = "hidden";
+
+
+
+  document.getElementById('startedButton').addEventListener("click", function() {
+    page1.style.display = "none";
+    page2.style.display = "block";
+
+    document.body.style.overflow = "hidden";
+  });
+
+  document.getElementById('sideLogo').addEventListener("click", function() {
+    page1.style.display = "block";
+    page2.style.display = "none";
+
+    document.body.style.overflow = "scroll";
+  });
+
 
 // Displays the map/tile layer to the map
 function displayMap() {
@@ -115,6 +140,8 @@ function saveRoute(city, country, street, postalCode) {
     weather: weatherRouteData,
     latlngs: routeLine._latlngs,
   };
+
+  
 
   // Add newly saved routeData to the beginning of the savedRouteData array
   savedRouteData.unshift(routeData);
@@ -243,22 +270,22 @@ function clearRouteButton() {
 // Data for route to display on our page, if someone gets the chance when the design is done
 // }
 
-// function trafficMap() {
-//   L.control
-//     .layers(
-//       {
-//         Map: mapLayer,
-//         Satellite: MQ.satelliteLayer(),
-//         Dark: MQ.darkLayer(),
-//         Light: MQ.lightLayer(),
-//       },
-//       {
-//         "Traffic Flow": MQ.trafficLayer({ layers: ["flow"] }),
-//         "Traffic Incidents": MQ.trafficLayer({ layers: ["incidents"] }),
-//       }
-//     )
-//     .addTo(map);
-// }
+function trafficMap() {
+  L.control
+    .layers(
+      {
+        Map: mapLayer,
+        Satellite: MQ.satelliteLayer(),
+        Dark: MQ.darkLayer(),
+        Light: MQ.lightLayer(),
+      },
+      {
+        "Traffic Flow": MQ.trafficLayer({ layers: ["flow"] }),
+        "Traffic Incidents": MQ.trafficLayer({ layers: ["incidents"] }),
+      }
+    )
+    .addTo(map);
+}
 
 var placeHolder = $("#placeholder");
 // console.log(placeHolder);
@@ -376,10 +403,42 @@ function init() {
   search();
   clearRouteButton();
   saveButton();
-  // trafficMap();
+  trafficMap();
+  // displayWeatherIcon(city);
 
   // Click Event, pass in onRouteClick function
   map.on("click", onRouteClick);
 }
 
 init();
+
+// 
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+
+// 
+
+
+
+
+var newRouteData = JSON.parse(localStorage.getItem("routeData"));
+console.log(newRouteData);
+
+$("#airQualityBox").prepend(newRouteData[0].city + "<br>");
+$("#airQualityBox").append("AQI: <br>" + newRouteData[0].aqi);
+// $("#weatherBox").append("<img src="">" iconUrl + newRouteData[0].weather + ".png")
+$("#weatherImage").attr("src", iconUrl + newRouteData[0].weather + ".png")

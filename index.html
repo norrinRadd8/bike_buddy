@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
+    
+    <main id="page1">
     <!-- LOGO HEADER -->
     <div class="jumbotron">
       <div class="container">
@@ -37,15 +39,15 @@
     <!-- MAIN SECTION -->
     <div class="container main" id="main">
           
-      <div class="row main-section d-flex justify-content-between">
+      <div class="row main-section d-flex justify-content-between" id="landingPage">
 
         <div class="col-4">
           <h1 class ="text">Welcome to BikeBuddy</h1>
            <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
-           <button type="button" class="btn btn-primary">Get Started</button>
+           <button type="button" class="btn btn-primary" id="startedButton">Get Started</button>
         </div>
         <div class= "col-6">
-            <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
+            <img id="landingImage" src="assets/images/Landing Placeholder IMG.png" alt="">
              
         </div>
            
@@ -54,7 +56,7 @@
   </div>
 </div>
         <!-- MAIN SECTION - Popular Routes In Your Area -->
-    <section class="popular_routes">
+    <!-- <section class="popular_routes">
       <div class="container">
         <div class ="card routes">
           <div class="card-body">
@@ -84,7 +86,7 @@
         </div>
         </div>  
       </div> 
-    </section>
+    </section> -->
 
     <!-- SEARCH SECTION - Previous Searches 
     <section class="previous" id="previous_search">
@@ -228,7 +230,9 @@
                 <h5 id="address_title">London, UK</h5>
                 <p id="address">8 Gordon Street, WC12 5PN</p>
               <div> -->
-
+              </main>
+               <div id ="page2">
+                  
     <section class ="search" id="search_result">
       <div class="container-fluid">
         <div class="row flex-nowrap">
@@ -237,7 +241,40 @@
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <h5 class="address">London, Uk</h5>
                  <p class="address">8 Gordon Street, WC12 5PN</p>
-                  <div class="dropdown">
+
+                      <!--  -->
+                <button type="button" class="collapsible">Traffic</button>
+<div class="content">
+  <div id="trafficBox"></div>
+</div>
+
+<button type="button" class="collapsible">Weather</button>
+<div class="content">
+  <div id="weatherBox">
+    <div id="weather">
+      <img id="weatherImage" src="./assets/images/bicycle.png">
+          </div>
+  </div>
+</div>
+
+<button type="button" class="collapsible">Air Quality</button>
+<div class="content">
+  <div id="airQualityBox">
+   
+  </div>
+</div>
+
+<button type="button" class="collapsible">Previous Searches</button>
+<div class="content">
+  <div id="previousSearchBox"></div>
+</div>
+
+<img id="sideLogo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+
+
+                      <!--  -->
+
+                  <!-- <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Traffic
                     </button>
@@ -284,12 +321,14 @@
                   <div class="images">
                     <img class="cyclist" src="assets/images/Cyclist.png" alt="" />
                     <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-                  </div>
+                  </div> -->
                     
             </div>
             
+            
+
           </div>
-          <div class="col pt-3">
+          <div class="col- pt-3">
             <div id="map"></div>
           
           <!--<button id="current_location"><img src="" alt="" /></button> -->
@@ -348,14 +387,16 @@
       </div>
     </section>
 
+  </div>
+
     <script
       src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
       integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
       crossorigin=""
     ></script>
     <!-- Traffic & Layered Maps Plugins-->
-    <!-- <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=XxJwSfiWGX1w9qEYylwN9f03GtegVqO9"></script>
-    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=XxJwSfiWGX1w9qEYylwN9f03GtegVqO9"></script> -->
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=IMlod8ggPRkM6P7VpNnHHngWikubfqXC"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=IMlod8ggPRkM6P7VpNnHHngWikubfqXC"></script>
     <!-- Location Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.68.0/dist/L.Control.Locate.min.js"></script>
     <!-- Easy Button Plugin -->
