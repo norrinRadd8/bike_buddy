@@ -20,24 +20,27 @@ var mapLayer = MQ.mapLayer(),
 
 
   // Hide & Show Elements
-  var page1 = document.getElementById('page1');
-  var page2 = document.getElementById('page2');
+  var page1 = $('#page1');
+  var page2 = $('#page2');
   
-  page2.style.display = "none";
-  document.body.style.overflow = "hidden";
+  page2.hide()
+ 
+  $('body').css('overflow','hidden') 
 
+  var startBtn = $('#startedButton')
+    startBtn.click(function() {
+    page1.hide(1000)
+    page2.show();
 
+    $('body').css('overflow','hidden') 
 
-  document.getElementById('startedButton').addEventListener("click", function() {
-    page1.style.display = "none";
-    page2.style.display = "block";
-
-    document.body.style.overflow = "hidden";
   });
 
-  document.getElementById('sideLogo').addEventListener("click", function() {
-    page1.style.display = "block";
-    page2.style.display = "none";
+  var sideLogo = $('#sideLogo')
+    sideLogo.click(function() {
+
+    page1.show(1000);
+    page2.hide();
 
     document.body.style.overflow = "scroll";
   });

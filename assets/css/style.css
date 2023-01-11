@@ -235,6 +235,8 @@ p {
   margin-top: 830px;
   margin-left: 1%;
   position: absolute;
+  cursor: pointer;
+  
   /* position: relative; */
 }
 
