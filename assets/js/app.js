@@ -18,33 +18,29 @@ var weatherRouteData;
 var mapLayer = MQ.mapLayer(),
   map;
 
+// Hide & Show Elements
+var page1 = $("#page1");
+var page2 = $("#page2");
 
-  // Hide & Show Elements
-  var page1 = $('#page1');
-  var page2 = $('#page2');
-  
-  page2.hide()
- 
-  $('body').css('overflow','hidden') 
+page2.hide();
 
-  var startBtn = $('#startedButton')
-    startBtn.click(function() {
-    page1.hide(1000)
-    page2.show();
+$("body").css("overflow", "hidden");
 
-    $('body').css('overflow','hidden') 
+var startBtn = $("#startedButton");
+startBtn.click(function () {
+  page1.hide(1000);
+  page2.show();
 
-  });
+  $("body").css("overflow", "hidden");
+});
 
-  var sideLogo = $('#sideLogo')
-    sideLogo.click(function() {
+var sideLogo = $("#sideLogo");
+sideLogo.click(function () {
+  page1.show(1000);
+  page2.hide();
 
-    page1.show(1000);
-    page2.hide();
-
-    document.body.style.overflow = "scroll";
-  });
-
+  document.body.style.overflow = "scroll";
+});
 
 // Displays the map/tile layer to the map
 function displayMap() {
@@ -143,8 +139,6 @@ function saveRoute(city, country, street, postalCode) {
     weather: weatherRouteData,
     latlngs: routeLine._latlngs,
   };
-
-  
 
   // Add newly saved routeData to the beginning of the savedRouteData array
   savedRouteData.unshift(routeData);
@@ -339,23 +333,23 @@ function updateAQI(city) {
       AQI = "Unavailable";
     }
     if (typeof AQI !== "undefined") {
-      $("#aqi").text(`(Test AQI): ${AQI}`);
+      $("#airQualityBox").text(`${AQI}`);
     } else {
-      $("#aqi").text("AQI Unavailable");
+      $("#airQualityBox").text("AQI Unavailable");
     }
 
     // console.log(AQI);
 
     if (AQI <= 50) {
-      $("#qualityBox").css({ backgroundColor: "green", color: "white" });
+      $("#airQualityBox").css({ backgroundColor: "green", color: "white" });
     }
 
     if (AQI >= 50) {
-      $("#qualityBox").css({ backgroundColor: "orange", color: "white" });
+      $("#airQualityBox").css({ backgroundColor: "orange", color: "white" });
     }
 
     if (AQI >= 100) {
-      $("#qualityBox").css({ backgroundColor: "red", color: "white" });
+      $("#airQualityBox").css({ backgroundColor: "red", color: "white" });
     }
   });
 }
@@ -415,13 +409,13 @@ function init() {
 
 init();
 
-// 
+//
 
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
 for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+  coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
@@ -431,17 +425,3 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
-
-
-// 
-
-
-
-
-var newRouteData = JSON.parse(localStorage.getItem("routeData"));
-console.log(newRouteData);
-
-$("#airQualityBox").prepend(newRouteData[0].city + "<br>");
-$("#airQualityBox").append("AQI: <br>" + newRouteData[0].aqi);
-// $("#weatherBox").append("<img src="">" iconUrl + newRouteData[0].weather + ".png")
-$("#weatherImage").attr("src", iconUrl + newRouteData[0].weather + ".png")
