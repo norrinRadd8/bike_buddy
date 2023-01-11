@@ -246,19 +246,6 @@ function displayRoute(routeData) {
 
 // This Function handles the click event on the map
 function onRouteClick(event) {
-  // Icons
-  var startMarkerIcon = L.icon({
-    iconUrl: "assets/images/marker-blue.png",
-    iconSize: [30],
-    iconAnchor: [18, 45],
-  });
-
-  var endMarkerIcon = L.icon({
-    iconUrl: "assets/images/marker-green.png",
-    iconSize: [30],
-    iconAnchor: [18, 45],
-  });
-
   // If a route is already drawn, display a popup and exit the function
   if (isRouteDrawn) {
     L.popup().setLatLng(event.latlng).setContent("Please clear the route before adding a new one").openOn(map);
@@ -268,13 +255,13 @@ function onRouteClick(event) {
   // If the start location has not been set, set it to the clicked location and add a marker
   if (!startLocation) {
     startLocation = event.latlng.lat + "," + event.latlng.lng;
-    startMarker = L.marker(event.latlng, { icon: startMarkerIcon }).addTo(map);
+    startMarker = L.marker(event.latlng).addTo(map);
     return;
   }
 
   // If the start location has been set, set the end location to the clicked location and add a marker
   endLocation = event.latlng.lat + "," + event.latlng.lng;
-  endMarker = L.marker(event.latlng, { icon: endMarkerIcon }).addTo(map);
+  endMarker = L.marker(event.latlng).addTo(map);
 
   // Get the route data from the Tom Tom calculate route API using the start and end locations
   getRouteData(startLocation, endLocation);

@@ -376,6 +376,53 @@ h4 {
 
 /* Media Queries */
 
+/* Laptop */
+@media screen 
+and (max-width:1600px)
+and (min-device-width: 900px)
+{
+
+
+  .main_logo {
+    margin-top: 60px;
+    margin-bottom: 0px;
+    width: 360px;
+    height: 44px;
+  }
+  
+  h1{
+    font-size: 40px;
+  }
+  
+#bodyText {
+  font-size: 15px;
+}
+
+  #landingPage{
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  
+  
+  #landingImage{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 600px !important;
+    height: auto ;
+    /* position: relative;
+    top: -600px;
+    left: -100px; */
+  }
+  
+   .col-4{
+    
+  } 
+
+  
+
+}
+
 /* Mobile */
 
 
@@ -402,7 +449,7 @@ h4 {
   width: 400px !important;
   height: auto !important;
   position: relative;
-  top: -600px;
+  top: -470px;
   left: -100px;
 }
 
@@ -419,6 +466,5 @@ h4 {
 
     
 }
-
 
 
