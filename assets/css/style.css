@@ -313,7 +313,115 @@ h4 {
   z-index: 99999;
 }
 
+/* Modals */
+
+#greyScreen{
+  background-color: grey;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  position: fixed;
+  top: 0px;
+}
+
+#modal1{
+  position: fixed;
+  background-color: #fefefe;
+  top: 77px;
+  right: 90px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal2{
+  position: fixed;
+  background-color: #fefefe;
+  top: 300px;
+  right: 230px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal3{
+  position: fixed;
+  background-color: #fefefe;
+  top: 177px;
+  right: 40px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal4{
+  position: fixed;
+  background-color: #fefefe;
+  bottom: 30px;
+  right: 70px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal5{
+  position: fixed;
+  background-color: #fefefe;
+  top: 177px;
+  left: 360px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#modal1:hover, #modal2:hover, #modal3:hover, #modal4:hover, #modal5:hover{
+  background-color: #ececec;
+
+}
+
 /* Media Queries */
+
+/* Laptop */
+@media screen 
+and (max-width:1600px)
+and (min-device-width: 900px)
+{
+
+
+  .main_logo {
+    margin-top: 60px;
+    margin-bottom: 0px;
+    width: 360px;
+    height: 44px;
+  }
+  
+  h1{
+    font-size: 40px;
+  }
+  
+#bodyText {
+  font-size: 15px;
+}
+
+  #landingPage{
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  
+  
+  #landingImage{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 600px !important;
+    height: auto ;
+    /* position: relative;
+    top: -600px;
+    left: -100px; */
+  }
+  
+   .col-4{
+    
+  } 
+
+  
+
+}
 
 /* Mobile */
 
@@ -341,7 +449,7 @@ h4 {
   width: 400px !important;
   height: auto !important;
   position: relative;
-  top: -600px;
+  top: -470px;
   left: -100px;
 }
 
@@ -358,6 +466,5 @@ h4 {
 
     
 }
-
 
 
