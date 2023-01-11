@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- GEOSEARCH SEARCH -->
-<link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch/leaflet-opencage-geosearch.css" />
-<script src="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <!-- GEOSEARCH SEARCH -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch/leaflet-opencage-geosearch.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 
-<script src="http://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
-<script src="./assets/js/leaflet-providers.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-<link rel="stylesheet" href="assets/css/style.css" />
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 
-<body>
-  <!-- LOGO HEADER -->
-  <div class="jumbotron">
-    <div class="container">
-
-      <div class="row">
-        <header class="col d-flex justify-content-center">
-
-          <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-        </header>
-      </div>
-    </div>
-  </div>
+    <script src="http://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
+    <script src="./assets/js/leaflet-providers.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    
+    <main id="page1">
+    <!-- LOGO HEADER -->
+    <div class="jumbotron">
+      <div class="container">
 
 
-  <!-- MAIN SECTION -->
-  <div class="container main" id="main">
+    <!-- MAIN SECTION -->
+    <div class="container main" id="main">
+          
+      <div class="row main-section d-flex justify-content-between" id="landingPage">
 
-    <div class="row main-section d-flex justify-content-between">
-
-      <div class="col-4">
-        <h1 class="text">Welcome to BikeBuddy</h1>
-        <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
-        <button type="button" class="btn btn-primary">Get Started</button>
+        <div class="col-4">
+          <h1 class ="text">Welcome to BikeBuddy</h1>
+           <p>We help parents find as safe a place as possible to teach their children cycling on the road.</p>
+           <button type="button" class="btn btn-primary" id="startedButton">Get Started</button>
+        </div>
+        <div class= "col-6">
+            <img id="landingImage" src="assets/images/Landing Placeholder IMG.png" alt="">
+             
+        </div>
+          
       </div>
       <div class="col-6">
         <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
@@ -51,15 +52,14 @@
 
     </div>
   </div>
-  </div>
-  <!-- MAIN SECTION - Popular Routes In Your Area -->
-  <section class="popular_routes">
-    <div class="container">
-      <div class="card routes">
-        <div class="card-body">
-          <h2 class="dots text-center">...</h2>
 
-          <div class="row d-flex align-items-between">
+</div>
+        <!-- MAIN SECTION - Popular Routes In Your Area -->
+    <!-- <section class="popular_routes">
+      <div class="container">
+        <div class ="card routes">
+          <div class="card-body">
+            <h2 class="dots text-center">...</h2>
 
             <div class="col-6 ">
               <img class="main_logo" src="assets/images/Landing Placeholder IMG.png" alt="">
@@ -82,8 +82,11 @@
             </div>
           </div>
         </div>
-      </div>
-  </section>
+
+        </div>  
+      </div> 
+    </section> -->
+
 
   <!-- SEARCH SECTION - Previous Searches 
     <section class="previous" id="previous_search">
@@ -228,25 +231,60 @@
                 <p id="address">8 Gordon Street, WC12 5PN</p>
               <div> -->
 
-  <section class="search" id="search_result">
-    <div class="container-fluid">
-      <div class="row flex-nowrap">
+              </main>
+               <div id ="page2">
+                  
+    <section class ="search" id="search_result">
+      <div class="container-fluid">
+        <div class="row flex-nowrap">
+          
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <h5 id="address_title" class="address">Please search for a city</h5>
+                 <p id = "address" class="address"></p>
 
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <h5 class="address">London, Uk</h5>
-            <p class="address">8 Gordon Street, WC12 5PN</p>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Traffic
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">item</a></li>
-                <li><a class="dropdown-item" href="#">item</a></li>
-                <li><a class="dropdown-item" href="#">item</a></li>
-              </ul>
-            </div>
+                      <!--  -->
+                <button type="button" class="collapsible">Traffic</button>
+<div class="content">
+  <div id="trafficBox"></div>
+</div>
+
+<button type="button" class="collapsible">Weather</button>
+<div class="content">
+  <div id="weatherBox">
+    <div id="weather">
+      <img id="weatherImage" src="./assets/images/bicycle.png">
+          </div>
+  </div>
+</div>
+
+<button type="button" class="collapsible">Air Quality</button>
+<div class="content">
+  <div id="airQualityBox">
+   
+  </div>
+</div>
+
+<button type="button" class="collapsible">Previous Searches</button>
+<div class="content">
+  <div id="previousSearchBox"></div>
+</div>
+
+<img id="sideLogo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+
+
+                      <!--  -->
+
+                  <!-- <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Traffic
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                    </ul>
+                  </div>
 
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -272,43 +310,36 @@
               </ul>
             </div>
 
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Previous searches
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">item</a></li>
-                <li><a class="dropdown-item" href="#">item</a></li>
-                <li><a class="dropdown-item" href="#">item</a></li>
-              </ul>
+
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Previous searches
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                      <li><a class="dropdown-item" href="#">item</a></li>
+                    </ul>
+                  </div>
+                  <hr>
+                  <div class="images">
+                    <img class="cyclist" src="assets/images/Cyclist.png" alt="" />
+                    <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+                  </div> -->
+                    
             </div>
-            <hr>
-            <div class="images">
-              <img class="cyclist" src="assets/images/Cyclist.png" alt="" />
-              <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-            </div>
+            
+            
 
           </div>
-
-        </div>
-        <div class="col pt-3">
-          <div id="map"></div>
-
+          <div class="col- pt-3">
+            <div id="map"></div>
+          
           <!--<button id="current_location"><img src="" alt="" /></button> -->
         </div>
       </div>
     </div>
   </section>
-
-
-
-
-
-
-
-
-
 
   <!-- <div class="images">
                   <img class="cyclist" src="assets/images/Cyclist.png" alt="" />
@@ -334,8 +365,6 @@
             <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
           </div> -->
 
-
-
   <section class="scroll_sec">
     <div class="scroll_tips">
       <h4>
@@ -346,7 +375,6 @@
         <img class="icon" src="assets/images/favicon.png" /> Use lights when cycling at night!
         <img class="icon" src="assets/images/favicon.png" /> Park your bike responsibily!
         <img class="icon" src="assets/images/favicon.png" /> Listen to your parents!
-        <img class="icon" src="assets/images/favicon.png" />
       </h4>
     </div>
   </section>
@@ -371,3 +399,4 @@
 </body>
 
 </html>
+

@@ -10,14 +10,37 @@ var endMarker;
 var routeLine;
 var isRouteDrawn = false; // to determine whether a route is drawn or not, default false
 var country;
-var city;
+var city = "Leeds";
 var AQI;
 var country;
 var weatherRouteData;
 
+var mapLayer = MQ.mapLayer(),
+  map;
 
-// var mapLayer = MQ.mapLayer(),
-//   map;
+// Hide & Show Elements
+var page1 = $("#page1");
+var page2 = $("#page2");
+
+page2.hide();
+
+$("body").css("overflow", "hidden");
+
+var startBtn = $("#startedButton");
+startBtn.click(function () {
+  page1.hide(1000);
+  page2.show();
+
+  $("body").css("overflow", "hidden");
+});
+
+var sideLogo = $("#sideLogo");
+sideLogo.click(function () {
+  page1.show(1000);
+  page2.hide();
+
+  document.body.style.overflow = "scroll";
+});
 
 // Displays the map/tile layer to the map
 function displayMap() {
@@ -38,41 +61,42 @@ function getRouteData(startLocation, endLocation) {
   var baseURL = "https://api.tomtom.com/routing/1/calculateRoute/";
   var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}&travelMode=bicycle&traffic=true&routeType=thrilling&hilliness=low&avoid=motorways&avoid=tollRoads&avoid=ferries&avoid=unpavedRoads`;
   // Info for params > travelMode plots route with bicycle lanes if pos + traffic plots route with least traffic + routeType allows the use of hilliness to plot routes with low elevation + avoid motorways, tollRoads, ferries & unpavedRoads
+  if (startLocation && endLocation) {
+    // console.log(startLocation);
+    // Retrieve the route data from TOMTOM
+    $.get(calculateRouteURL)
+      .then(function (routeData) {
+        // Pass route data to other Functions
+        displayRoute(routeData);
+        // displayRouteDetails(routeData);
+      })
+      .catch(function (error) {
+        console.error("API ERROR", error);
+      });
+  }
 
-  // Retrieve the route data from TOMTOM
-  $.get(calculateRouteURL)
-    .then(function (routeData) {
-      // Pass route data to other Functions
-      displayRoute(routeData);
-      // displayRouteDetails(routeData);
-    })
-    .catch(function (error) {
-      console.error("API ERROR", error);
-    });
+  if (startLocation) {
+    // Reverse geocode the start location to get address details (when a route is plotted - the startLocation is the start of the route)
+    $.get(`https://api.tomtom.com/search/2/reverseGeocode/${startLocation}.json?key=${apiKey}`)
+      .then(function (startAddress) {
+        // console.log(startAddress);
 
-  // Reverse geocode the start location to get address details (when a route is plotted - the startLocation is the start of the route)
-  $.get(`https://api.tomtom.com/search/2/reverseGeocode/${startLocation}.json?key=${apiKey}`)
-    .then(function (startAddress) {
-      // console.log(startAddress);
+        // Extracts location data from startAddress
+        city = startAddress.addresses[0].address.municipality;
+        country = startAddress.addresses[0].address.country;
+        street = startAddress.addresses[0].address.street;
+        postalCode = startAddress.addresses[0].address.extendedPostalCode;
 
-      // Extracts location data from startAddress
-      city = startAddress.addresses[0].address.municipality;
-      country = startAddress.addresses[0].address.country;
-      street = startAddress.addresses[0].address.street;
-      postalCode = startAddress.addresses[0].address.extendedPostalCode;
+        updateAQI(city);
 
-      // console.log(city);
+        displayWeatherIcon(city);
 
-      updateAQI(city);
-      displayWeatherIcon(city);
-
-
-      updateResultsPage();
-
-    })
-    .catch(function (error) {
-      console.error("API GEO ERROR", error);
-    });
+        updateResultsPage();
+      })
+      .catch(function (error) {
+        console.error("API GEO ERROR", error);
+      });
+  }
 }
 
 // Creates the saveButton on the map to save the current route and location details on click
@@ -112,7 +136,7 @@ function saveRoute(city, country, street, postalCode) {
     street: street,
     postCode: postalCode,
     aqi: AQI,
-    weather: weatherRouteData, 
+    weather: weatherRouteData,
     latlngs: routeLine._latlngs,
   };
 
@@ -165,7 +189,7 @@ function onRouteClick(event) {
 }
 
 // Creates a control button on the map to display current location
-function displayCurrentLocation() {
+function updateCurrentLocation() {
   L.control
     .locate({
       position: "topright",
@@ -177,13 +201,16 @@ function displayCurrentLocation() {
   // When a location is found, get the current location coords, e.g lat,lng
   map.on("locationfound", function (location) {
     // console.log(location);
+    // console.log(location.latitude);
+    // console.log(location.longitude);
 
-    // Get the lat and lng of current location and assign it to a variable
-    currentLocationCoords = location.latlng.lat + "," + location.latlng.lng;
-    // console.log(city);
+    // Get the coords of current location
 
-    // This is causing the API ERROR, because getRouteData() needs a start and end location...
-    getRouteData(currentLocationCoords);
+    var lat = location.latitude;
+    var lng = location.longitude;
+
+    // Get the route data for the current location
+    getRouteData(lat + "," + lng, null);
   });
 }
 
@@ -240,22 +267,22 @@ function clearRouteButton() {
 // Data for route to display on our page, if someone gets the chance when the design is done
 // }
 
-// function trafficMap() {
-//   L.control
-//     .layers(
-//       {
-//         Map: mapLayer,
-//         Satellite: MQ.satelliteLayer(),
-//         Dark: MQ.darkLayer(),
-//         Light: MQ.lightLayer(),
-//       },
-//       {
-//         "Traffic Flow": MQ.trafficLayer({ layers: ["flow"] }),
-//         "Traffic Incidents": MQ.trafficLayer({ layers: ["incidents"] }),
-//       }
-//     )
-//     .addTo(map);
-// }
+function trafficMap() {
+  L.control
+    .layers(
+      {
+        Map: mapLayer,
+        Satellite: MQ.satelliteLayer(),
+        Dark: MQ.darkLayer(),
+        Light: MQ.lightLayer(),
+      },
+      {
+        "Traffic Flow": MQ.trafficLayer({ layers: ["flow"] }),
+        "Traffic Incidents": MQ.trafficLayer({ layers: ["incidents"] }),
+      }
+    )
+    .addTo(map);
+}
 
 var placeHolder = $("#placeholder");
 // console.log(placeHolder);
@@ -291,8 +318,7 @@ function search() {
       // Call the functions to update the data on the page
       updateResultsPage();
       updateAQI(city);
-      displayWeatherIcon(city)
-      
+      displayWeatherIcon(city);
     })
     .addTo(map);
 }
@@ -307,28 +333,28 @@ function updateAQI(city) {
       AQI = "Unavailable";
     }
     if (typeof AQI !== "undefined") {
-      $("#aqi").text(`(Test AQI): ${AQI}`);
+      $("#airQualityBox").text(`${AQI}`);
     } else {
-      $("#aqi").text("AQI Unavailable");
+      $("#airQualityBox").text("AQI Unavailable");
     }
 
     // console.log(AQI);
 
     if (AQI <= 50) {
-      $("#qualityBox").css({ backgroundColor: "green", color: "white" });
+      $("#airQualityBox").css({ backgroundColor: "green", color: "white" });
     }
 
     if (AQI >= 50) {
-      $("#qualityBox").css({ backgroundColor: "orange", color: "white" });
+      $("#airQualityBox").css({ backgroundColor: "orange", color: "white" });
     }
 
     if (AQI >= 100) {
-      $("#qualityBox").css({ backgroundColor: "red", color: "white" });
+      $("#airQualityBox").css({ backgroundColor: "red", color: "white" });
     }
   });
 }
 
-// Function to update the location data on the page (for when a route is plotted rather than a location searched)
+// Function to update the location data on the page
 function updateResultsPage() {
   // If city or country data is not available, set the value to "Location Unavailable".
   if (typeof city !== "undefined" && typeof country !== "undefined") {
@@ -348,38 +374,54 @@ function updateResultsPage() {
 // DISPLAY WEATHER ICON
 var baseURL = "https://api.openweathermap.org/data/2.5/";
 var currentURL = baseURL + `weather?appid=6dbbcb8584e56ab51c6d42e5b87ce402&units=metric&`;
-var iconUrl = 'https://openweathermap.org/img/w/';
-var weatherId = $('#weather');
-
+var iconUrl = "https://openweathermap.org/img/w/";
+var weatherId = $("#weather");
 
 function displayWeatherIcon(city) {
-  $.get(currentURL + `q=${city}`)
-        .then(function(currentWeather) {
-            console.log(currentWeather)
-            weatherRouteData = currentWeather.weather[0].icon
-            console.log(weatherRouteData)
-           return weatherId.append(`
+  $.get(currentURL + `q=${city}`).then(function (currentWeather) {
+    // console.log(currentWeather);
+    weatherRouteData = currentWeather.weather[0].icon;
+    // console.log(weatherRouteData);
+    return weatherId.html(`
             <div>
                 <h3><img src="${iconUrl + currentWeather.weather[0].icon + ".png"}" alt="">
                 </h3>
             </div>
-            `)     
-        })
-        return weatherRouteData
-      } 
+            `);
+  });
+  return weatherRouteData;
+}
 
 // || INITIALISE THE PAGE
 function init() {
   // Call Functions
   displayMap();
-  displayCurrentLocation();
+  updateCurrentLocation();
   search();
   clearRouteButton();
   saveButton();
-  // trafficMap();
+  trafficMap();
+  // displayWeatherIcon(city);
 
   // Click Event, pass in onRouteClick function
   map.on("click", onRouteClick);
 }
 
 init();
+
+//
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
