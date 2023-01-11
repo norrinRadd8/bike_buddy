@@ -385,7 +385,7 @@ function displayWeatherIcon(city) {
     // console.log(currentWeather);
     weatherRouteData = currentWeather.weather[0].icon;
     // console.log(weatherRouteData);
-    return weatherId.append(`
+    return weatherId.html(`
             <div>
                 <h3><img src="${iconUrl + currentWeather.weather[0].icon + ".png"}" alt="">
                 </h3>
