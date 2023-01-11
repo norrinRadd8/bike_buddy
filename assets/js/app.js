@@ -269,7 +269,6 @@ function onRouteClick(event) {
   if (!startLocation) {
     startLocation = event.latlng.lat + "," + event.latlng.lng;
     startMarker = L.marker(event.latlng, { icon: startMarkerIcon }).addTo(map);
-    startMarker = L.marker(event.latlng).addTo(map);
     return;
   }
 
