@@ -10,7 +10,6 @@ var endMarker;
 var routeLine;
 var isRouteDrawn = false; // to determine whether a route is drawn or not, default false
 var country;
-var city = "Leeds";
 var AQI;
 var country;
 var weatherRouteData;
@@ -72,7 +71,7 @@ function getRouteData(startLocation, endLocation) {
       .then(function (routeData) {
         // Pass route data to other Functions
         displayRoute(routeData);
-        // displayRouteDetails(routeData);
+        displayRouteDetails(routeData);
       })
       .catch(function (error) {
         console.error("API ERROR", error);
@@ -264,14 +263,27 @@ function clearRouteButton() {
   }).addTo(map);
 }
 
-// function displayRouteDetails(routeData) {
-//   var routeDistance = routeData.routes[0].summary.lengthInMeters;
-//   var routeDuration = routeData.routes[0].summary.travelTimeInSeconds;
-//   var arrivalTime = routeData.routes[0].summary.arrivalTime;
-//   var departureTime = routeData.routes[0].summary.departureTime;
+function displayRouteDetails(routeData) {
+  var routeDistance = routeData.routes[0].summary.lengthInMeters/1609.344;
+  var routeDuration = routeData.routes[0].summary.travelTimeInSeconds;
+  var arrivalTime = routeData.routes[0].summary.arrivalTime;
+  var departureTime = routeData.routes[0].summary.departureTime;
+  var routeDur = $('#routeDur');
+  var routeArrTime = $(`#routeArrTime`);
+  var routeDeepTime = $(`#routeDepTime`)
 
-// Data for route to display on our page, if someone gets the chance when the design is done
-// }
+  var duration = moment.duration(routeDuration, 'seconds')
+  var hours = duration.hours()
+  var minutes = duration.minutes()
+
+  $('#routeDis').text(`Distance: ${Math.round(routeDistance)} miles`)
+
+  routeDur.text(`Duration: ${hours} hours ${minutes} minutes`)
+  routeArrTime.text("Depart: " + moment(departureTime).format('h:ss a'))
+  routeDeepTime.text("Arrive: " + moment(arrivalTime).format('h:ss a'))
+
+}
+
 
 function trafficMap() {
   L.control
@@ -385,13 +397,13 @@ var weatherId = $("#weather");
 
 function displayWeatherIcon(city) {
   $.get(currentURL + `q=${city}`).then(function (currentWeather) {
-    // console.log(currentWeather);
     weatherRouteData = currentWeather.weather[0].icon;
     // console.log(weatherRouteData);
     return weatherId.html(`
             <div>
                 <h3><img src="${iconUrl + currentWeather.weather[0].icon + ".png"}" alt="">
                 </h3>
+                <h3>${currentWeather.weather[0].description}</h3>
             </div>
             `);
   });
@@ -408,6 +420,8 @@ function init() {
   saveButton();
   trafficMap();
   // displayWeatherIcon(city);
+  
+  
 
   // Click Event, pass in onRouteClick function
   map.on("click", onRouteClick);
@@ -433,7 +447,7 @@ for (i = 0; i < coll.length; i++) {
 }
 
 
-// 
+//
 
 
 
