@@ -108,8 +108,13 @@ Bike Buddy is powered by four APIs - TomTom Routing, TomTom Reverse Geocoding, O
 
 ### Design
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+The design of this app was intended to be child-friendly whilst also appealing to adults & parents. So for the colour scheme a sky blue was chosen as the primary, this colour is friendly yet not too corporate, it's easy on the eyes and still appealing to children. For the vector images we chose to show a family cycling together to solidify to the user what this app is based around. The logo was modified to ensure the letters have a slightly fun and quirky feel to them. 
 
+Users are initially greeted with a landing page to give a brief description of what bikebuddy actually is. From there they go straight to the map dashboard screen. Because the user may not be familiar with our app and because it has some different features to traditional navigation maps we include a modal tutorial to guide the user through our main features.
+
+Because this is a family based-app we wanted to include numerous features to help with the safety of the user. So it was decided that next to the map would be various buttons the user could explore to find out information such as traffic flow/ nearby traffic incidents, the air quality of the area. Not to mention general biking safety tips that display at the bottom of the screen.
+
+Overall the app was intended to be simple and straight forward to use for people of all ages, which is why after the landing screen all features are neatly together on the app dashboard, the user isn't even required to input a starting and end address and can simply tap their way to the desination directly on the map.
 ### Future Development
 
 Bike Buddy is always looking for ways to improve and enhance the cycling experience for families. We have some exciting ideas that will take Bike Buddy to the next level. With the ability to download routes as a file and see the duration and distance of a chosen route, users can easily track and plan their rides. And with Strava's API integration, users would be able to see their performance statistics and track their progress within Bike Buddy.
