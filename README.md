@@ -112,9 +112,11 @@ The design of this app was intended to be child-friendly whilst also appealing t
 
 Users are initially greeted with a landing page to give a brief description of what bikebuddy actually is. From there they go straight to the map dashboard screen. Because the user may not be familiar with our app and because it has some different features to traditional navigation maps we include a modal tutorial to guide the user through our main features.
 
-Because this is a family based-app we wanted to include numerous features to help with the safety of the user. So it was decided that next to the map would be various buttons the user could explore to find out information such as traffic flow/ nearby traffic incidents, the air quality of the area. Not to mention general biking safety tips that display at the bottom of the screen.
+Because this is a family based-app we wanted to include numerous features to help with the safety of the user. So it was decided that enxt to the map would be various buttons the user could explore to find out information such as traffic flow/ nearby traffic incidents, the air quality of the area. Not to mention general biking safety tips that display at the bottom of the screen.
 
 Overall the app was intended to be simple and straight forward to use for people of all ages, which is why after the landing screen all features are neatly together on the app dashboard, the user isn't even required to input a starting and end address and can simply tap their way to the desination directly on the map.
+
+The app started out as a rough black and white wireframe and transitioned to a fullscale figma prototype where most of the functionality and animations were fleshed out. Link Here: https://www.figma.com/proto/LtBwPWntoCXayy5pIhgsC1/BikeBuddy-(Copy)?scaling=min-zoom&page-id=0%3A1&node-id=1%3A4&starting-point-node-id=1%3A4
 ### Future Development
 
 Bike Buddy is always looking for ways to improve and enhance the cycling experience for families. We have some exciting ideas that will take Bike Buddy to the next level. With the ability to download routes as a file and see the duration and distance of a chosen route, users can easily track and plan their rides. And with Strava's API integration, users would be able to see their performance statistics and track their progress within Bike Buddy.
