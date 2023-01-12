@@ -161,55 +161,55 @@ function getRouteData(startLocation, endLocation) {
 }
 
 // Creates the saveButton on the map to save the current route and location details on click
-function saveButton() {
-  var saveButton = L.easyButton({
-    position: "bottomright",
-    title: "Save route",
-    leafletClasses: true,
-    className: "leaflet-bar leaflet-control",
-    states: [
-      {
-        stateName: "save-route",
-        icon: "fas fa-save",
-        title: "Save route",
-        onClick: function () {
-          saveRoute(city, country, street, postalCode);
-        },
-      },
-    ],
-  }).addTo(map);
-}
+// function saveButton() {
+//   var saveButton = L.easyButton({
+//     position: "bottomright",
+//     title: "Save route",
+//     leafletClasses: true,
+//     className: "leaflet-bar leaflet-control",
+//     states: [
+//       {
+//         stateName: "save-route",
+//         icon: "fas fa-save",
+//         title: "Save route",
+//         onClick: function () {
+//           saveRoute(city, country, street, postalCode);
+//         },
+//       },
+//     ],
+//   }).addTo(map);
+// }
 
 // Saves the current route when drawn and location data when the saveButton is clicked
-function saveRoute(city, country, street, postalCode) {
-  // If route is not currently drawn, exit the function
-  if (!isRouteDrawn) return;
+// function saveRoute(city, country, street, postalCode) {
+//   // If route is not currently drawn, exit the function
+//   if (!isRouteDrawn) return;
 
-  // console.log(city);
+//   // console.log(city);
 
-  // If a route is drawn, get route data or an empty array if there is none
-  var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
+//   // If a route is drawn, get route data or an empty array if there is none
+//   var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
 
-  // A routeData object to save route and location data to localStorage
-  var routeData = {
-    city: city,
-    country: country,
-    street: street,
-    postCode: postalCode,
-    aqi: AQI,
-    weather: weatherRouteData,
-    latlngs: routeLine._latlngs,
-  };
+//   // A routeData object to save route and location data to localStorage
+//   var routeData = {
+//     city: city,
+//     country: country,
+//     street: street,
+//     postCode: postalCode,
+//     aqi: AQI,
+//     weather: weatherRouteData,
+//     latlngs: routeLine._latlngs,
+//   };
 
-  // Add newly saved routeData to the beginning of the savedRouteData array
-  savedRouteData.unshift(routeData);
+//   // Add newly saved routeData to the beginning of the savedRouteData array
+//   savedRouteData.unshift(routeData);
 
-  // And keep only the first 4 elements
-  savedRouteData = savedRouteData.slice(0, 4);
+//   // And keep only the first 4 elements
+//   savedRouteData = savedRouteData.slice(0, 4);
 
-  // Save the savedRouteData to localStorage
-  localStorage.setItem("routeData", JSON.stringify(savedRouteData));
-}
+//   // Save the savedRouteData to localStorage
+//   localStorage.setItem("routeData", JSON.stringify(savedRouteData));
+// }
 
 // Creates a route on the map
 function displayRoute(routeData) {
@@ -333,26 +333,24 @@ function clearRouteButton() {
 }
 
 function displayRouteDetails(routeData) {
-  var routeDistance = routeData.routes[0].summary.lengthInMeters/1609.344;
+  var routeDistance = routeData.routes[0].summary.lengthInMeters / 1609.344;
   var routeDuration = routeData.routes[0].summary.travelTimeInSeconds;
   var arrivalTime = routeData.routes[0].summary.arrivalTime;
   var departureTime = routeData.routes[0].summary.departureTime;
-  var routeDur = $('#routeDur');
+  var routeDur = $("#routeDur");
   var routeArrTime = $(`#routeArrTime`);
-  var routeDeepTime = $(`#routeDepTime`)
+  var routeDeepTime = $(`#routeDepTime`);
 
-  var duration = moment.duration(routeDuration, 'seconds')
-  var hours = duration.hours()
-  var minutes = duration.minutes()
+  var duration = moment.duration(routeDuration, "seconds");
+  var hours = duration.hours();
+  var minutes = duration.minutes();
 
-  $('#routeDis').text(`Distance: ${Math.round(routeDistance)} miles`)
+  $("#routeDis").text(`Distance: ${Math.round(routeDistance)} miles`);
 
-  routeDur.text(`Duration: ${hours} hours ${minutes} minutes`)
-  routeArrTime.text("Depart: " + moment(departureTime).format('h:ss a'))
-  routeDeepTime.text("Arrive: " + moment(arrivalTime).format('h:ss a'))
-
+  routeDur.text(`Duration: ${hours} hours ${minutes} minutes`);
+  // routeArrTime.text("Arrive: " + moment(departureTime).format("h:ss a"));
+  // routeDeepTime.text("Depart: " + moment(arrivalTime).format("h:ss a"));
 }
-
 
 function trafficMap() {
   L.control
@@ -428,15 +426,15 @@ function updateAQI(city) {
     // console.log(AQI);
 
     if (AQI <= 50) {
-      $("#airQualityBox").css({ backgroundColor: "green", color: "white" });
+      $("#airQualityBox").text(`${AQI} - Good`);
     }
 
     if (AQI >= 50) {
-      $("#airQualityBox").css({ backgroundColor: "orange", color: "white" });
+      $("#airQualityBox").text(`${AQI} - Average`);
     }
 
     if (AQI >= 100) {
-      $("#airQualityBox").css({ backgroundColor: "red", color: "white" });
+      $("#airQualityBox").text(`${AQI} - Poor`);
     }
   });
 }
@@ -486,11 +484,10 @@ function init() {
   updateCurrentLocation();
   search();
   clearRouteButton();
-  saveButton();
+  // saveButton();
   trafficMap();
   // displayWeatherIcon(city);
   modalScreen();
-
 
   // Click Event, pass in onRouteClick function
   map.on("click", onRouteClick);
@@ -514,4 +511,3 @@ for (i = 0; i < coll.length; i++) {
     }
   });
 }
-
