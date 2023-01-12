@@ -1,3 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Saira&display=swap");
+
+@keyframes bouncing {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -10,6 +27,11 @@ body {
 
 body {
   background-image: url("../images/Background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Saira";
 }
 
 .main_logo {
@@ -19,23 +41,30 @@ body {
   height: 44px;
 }
 
-h1{
+h1 {
   font-size: 65px;
 }
 
-
-#landingImage{
-  margin-top: 60px;
-  margin-bottom: 60px;
-  width: 760px !important;
+#landingImage {
+  /* margin-top: 60px; */
+  /* margin-bottom: 60px; */
+  width: 80% !important;
   height: auto !important;
 }
 
 .btn {
   width: 175px !important;
   height: 57px;
-  background-color: #E87308 !important;
+  background-color: #e87308 !important;
   margin-top: 10px !important;
+  animation-name: bouncing !important;
+  animation-iteration-count: infinite !important;
+  animation-duration: 2s;
+}
+
+.btn:hover {
+  background-color: #e89446 !important;
+  animation: none;
 }
 
 /* #startedButton{
@@ -48,11 +77,10 @@ h1{
   margin-left: 50px;
 }
 
-
-
 #map {
-  height: 100%;
-  width: 84%;
+  height: 90vh;
+  border-radius: 5px;
+  /* width: 84%; */
 }
 
 .container {
@@ -70,14 +98,12 @@ h1{
 }
 .text {
   color: white;
-  font-family: "Saira";
   font-style: normal;
   font-weight: 800;
   font-size: 64;
 }
 
 p {
-  font-family: "Saira";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -110,7 +136,6 @@ p {
 .popular {
   color: #ffffff;
   margin-bottom: 30px;
-  font-family: "Saira";
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
@@ -156,12 +181,10 @@ p {
 
 .address {
   margin-top: 20px;
-  font-family: Saira;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .dropdown .btn {
-  font-family: "Saira";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -173,10 +196,11 @@ p {
   margin: 10px;
 }
 
-.col-auto {
-  background-color: #0C639B;
-  height: 900px;
+.results {
+  background: linear-gradient(#0c639b, #2e85cc);
+  /* height: 90vh; */
   margin-top: 15px;
+  border-radius: 5px;
 }
 
 .images .main_logo {
@@ -185,12 +209,11 @@ p {
   height: 25px;
 }
 
-
 /*  */
 
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
-  background-color: #1285CC;
+  background-color: #1285cc;
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -202,11 +225,11 @@ p {
   border-radius: 5px;
   margin: 10px 0px 0px 0px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
- 
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
+.active,
+.collapsible:hover {
   background-color: #137dbe;
 }
 
@@ -215,7 +238,7 @@ p {
   padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: #1285CC;
+  background-color: #1285cc;
   width: 100%;
   border-radius: 5px;
   padding: 24px;
@@ -228,18 +251,19 @@ p {
  
 } */
 
-#sideLogo{
+h3 {
+  font-size: 16px;
+}
+
+#sideLogo {
   width: 160px;
-  /* position: fixed; */
-  /* bottom: 60px; */
-  margin-top: 830px;
+  position: fixed;
+  bottom: 90px;
+  display: flex;
   margin-left: 1%;
   position: absolute;
   cursor: pointer;
-  
-  /* position: relative; */
 }
-
 
 /* Scroll Animation */
 
@@ -250,44 +274,38 @@ p {
   display: flex;
   overflow: hidden;
   bottom: 1px;
-
 }
 
 .scroll_tips {
   position: relative;
   width: 100%;
-  background: #1285CC;
   overflow: hidden;
   color: white;
-  
 }
 
 /* animate for 30 seconds on a loop */
 h4 {
   position: absolute;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   animation: animate 30s linear infinite;
-  font-size: 8px !important;
+  font-size: 14px !important;
 }
-
 
 .icon {
   /*scale image as mirror so reversed icon facing left not right*/
   height: 2rem;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
-
 }
 
 @keyframes animate {
-
   /* animation starting point 5% of length visable at start, 100% not visable by end */
   0% {
-      transform: translate(95%);
+    transform: translate(95%);
   }
 
   100% {
-      transform: translate(-100%);
+    transform: translate(-100%);
   }
 }
 
@@ -315,7 +333,7 @@ h4 {
 
 /* Modals */
 
-#greyScreen{
+#greyScreen {
   background-color: grey;
   height: 100%;
   width: 100%;
@@ -324,7 +342,7 @@ h4 {
   top: 0px;
 }
 
-#modal1{
+#modal1 {
   position: fixed;
   background-color: #fefefe;
   top: 77px;
@@ -333,7 +351,7 @@ h4 {
   border-radius: 5px;
 }
 
-#modal2{
+#modal2 {
   position: fixed;
   background-color: #fefefe;
   top: 300px;
@@ -342,7 +360,7 @@ h4 {
   border-radius: 5px;
 }
 
-#modal3{
+#modal3 {
   position: fixed;
   background-color: #fefefe;
   top: 177px;
@@ -351,7 +369,7 @@ h4 {
   border-radius: 5px;
 }
 
-#modal4{
+#modal4 {
   position: fixed;
   background-color: #fefefe;
   bottom: 30px;
@@ -360,7 +378,7 @@ h4 {
   border-radius: 5px;
 }
 
-#modal5{
+#modal5 {
   position: fixed;
   background-color: #fefefe;
   top: 177px;
@@ -369,66 +387,52 @@ h4 {
   border-radius: 5px;
 }
 
-#modal1:hover, #modal2:hover, #modal3:hover, #modal4:hover, #modal5:hover{
+#modal1:hover,
+#modal2:hover,
+#modal3:hover,
+#modal4:hover,
+#modal5:hover {
   background-color: #ececec;
-
 }
 
 /* Media Queries */
 
 /* Laptop */
-@media screen 
-and (max-width:1600px)
-and (min-device-width: 900px)
-{
-
-
+@media screen and (max-width: 1600px) and (min-device-width: 900px) {
   .main_logo {
     margin-top: 60px;
     margin-bottom: 0px;
     width: 360px;
     height: 44px;
   }
-  
-  h1{
+
+  h1 {
     font-size: 40px;
   }
-  
-#bodyText {
-  font-size: 15px;
-}
 
-  #landingPage{
-    display: flex;
-    flex-direction: row !important;
-    align-items: center !important;
+  #bodyText {
+    font-size: 15px;
   }
-  
-  
-  #landingImage{
-    margin-top: 60px;
-    margin-bottom: 60px;
-    width: 600px !important;
-    height: auto ;
-    /* position: relative;
-    top: -600px;
-    left: -100px; */
+
+  #landingPage {
+    /* display: flex; */
+    /* align-items: center !important; */
   }
-  
-   .col-4{
-    
-  } 
 
-  
+  #landingImage {
+    /* margin-top: 60px;
+    margin-bottom: 60px; */
+    width: 100% !important;
+  }
 
+  .scroll_sec {
+    height: 3.75vh;
+  }
 }
 
 /* Mobile */
 
-
-@media only screen and (max-width:768px) {
- 
-
+@media only screen and (max-width: 768px) {
   .main_logo {
     margin-top: 60px;
     margin-bottom: 60px;
@@ -436,35 +440,64 @@ and (min-device-width: 900px)
     height: auto;
   }
 
-#landingPage{
-  display: flex;
-  flex-direction: column !important;
-  align-items: center !important;
+  #landingPage {
+    scale: 0.7;
+    margin-top: -180px;
+  }
+
+  #landingImage {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 400px !important;
+    height: auto !important;
+    top: -470px;
+    left: -100px;
+  }
+  /* 
+   .col-4 {
+    position: relative;
+    bottom: -200px;
+    width: 400px;
+  }   */
+  /* * .d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 {
+    display: none !important;
+  } */
+
+  #map {
+    height: 50vh;
+    margin: 0px 10px;
+  }
+
+  #address_title {
+    margin: 10px;
+    font-size: 16px;
+  }
+
+  #address {
+    margin: 0;
+  }
+
+  .content {
+    font-size: 13px;
+  }
+
+  h3 {
+    font-size: 13px;
+  }
+  h3 img {
+    display: none;
+  }
+
+  .scroll_sec {
+    display: none;
+  }
+
+  #sideLogo {
+    scale: 0.6;
+    bottom: 10px;
+  }
+
+  .results {
+    background: transparent;
+  }
 }
-
-
-#landingImage{
-  margin-top: 60px;
-  margin-bottom: 60px;
-  width: 400px !important;
-  height: auto !important;
-  position: relative;
-  top: -470px;
-  left: -100px;
-}
-
-.col-4{
-  position: relative;
-  bottom: -200px;
-  width: 400px;
-} */
-
-
-.d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100{
-  display: none !important;
-}
-
-    
-}
-
-
