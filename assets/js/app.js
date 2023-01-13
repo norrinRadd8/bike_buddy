@@ -1,5 +1,4 @@
 // || GLOBAL VARIABLES
-
 // Initialise the map and set the initial view when page is first loaded
 var map = L.map("map").setView([51.505, -0.09], 13);
 
@@ -103,6 +102,21 @@ function modalScreen() {
   greyScreen.click(function () {});
 }
 
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
 // Displays the map/tile layer to the map
 function displayMap() {
   // Add a tile layer to the map
@@ -123,7 +137,6 @@ function getRouteData(startLocation, endLocation) {
   var calculateRouteURL = `${baseURL}${startLocation}:${endLocation}/json?key=${apiKey}&travelMode=bicycle&traffic=true&routeType=thrilling&hilliness=low&avoid=motorways&avoid=tollRoads&avoid=ferries&avoid=unpavedRoads`;
   // Info for params > travelMode plots route with bicycle lanes if pos + traffic plots route with least traffic + routeType allows the use of hilliness to plot routes with low elevation + avoid motorways, tollRoads, ferries & unpavedRoads
   if (startLocation && endLocation) {
-    // console.log(startLocation);
     // Retrieve the route data from TOMTOM
     $.get(calculateRouteURL)
       .then(function (routeData) {
@@ -140,8 +153,6 @@ function getRouteData(startLocation, endLocation) {
     // Reverse geocode the start location to get address details (when a route is plotted - the startLocation is the start of the route)
     $.get(`https://api.tomtom.com/search/2/reverseGeocode/${startLocation}.json?key=${apiKey}`)
       .then(function (startAddress) {
-        // console.log(startAddress);
-
         // Extracts location data from startAddress
         city = startAddress.addresses[0].address.municipality;
         country = startAddress.addresses[0].address.country;
@@ -149,9 +160,7 @@ function getRouteData(startLocation, endLocation) {
         postalCode = startAddress.addresses[0].address.extendedPostalCode;
 
         updateAQI(city);
-
         displayWeatherIcon(city);
-
         updateResultsPage();
       })
       .catch(function (error) {
@@ -159,57 +168,6 @@ function getRouteData(startLocation, endLocation) {
       });
   }
 }
-
-// Creates the saveButton on the map to save the current route and location details on click
-// function saveButton() {
-//   var saveButton = L.easyButton({
-//     position: "bottomright",
-//     title: "Save route",
-//     leafletClasses: true,
-//     className: "leaflet-bar leaflet-control",
-//     states: [
-//       {
-//         stateName: "save-route",
-//         icon: "fas fa-save",
-//         title: "Save route",
-//         onClick: function () {
-//           saveRoute(city, country, street, postalCode);
-//         },
-//       },
-//     ],
-//   }).addTo(map);
-// }
-
-// Saves the current route when drawn and location data when the saveButton is clicked
-// function saveRoute(city, country, street, postalCode) {
-//   // If route is not currently drawn, exit the function
-//   if (!isRouteDrawn) return;
-
-//   // console.log(city);
-
-//   // If a route is drawn, get route data or an empty array if there is none
-//   var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
-
-//   // A routeData object to save route and location data to localStorage
-//   var routeData = {
-//     city: city,
-//     country: country,
-//     street: street,
-//     postCode: postalCode,
-//     aqi: AQI,
-//     weather: weatherRouteData,
-//     latlngs: routeLine._latlngs,
-//   };
-
-//   // Add newly saved routeData to the beginning of the savedRouteData array
-//   savedRouteData.unshift(routeData);
-
-//   // And keep only the first 4 elements
-//   savedRouteData = savedRouteData.slice(0, 4);
-
-//   // Save the savedRouteData to localStorage
-//   localStorage.setItem("routeData", JSON.stringify(savedRouteData));
-// }
 
 // Creates a route on the map
 function displayRoute(routeData) {
@@ -264,7 +222,7 @@ function onRouteClick(event) {
 
 // Creates a control button on the map to display current location
 function updateCurrentLocation() {
-  L.control
+  var locateControl = L.control
     .locate({
       position: "topright",
       strings: {
@@ -272,14 +230,11 @@ function updateCurrentLocation() {
       },
     })
     .addTo(map);
+
+  $(locateControl.getContainer()).find(".leaflet-bar-part").css("cursor", "pointer");
   // When a location is found, get the current location coords, e.g lat,lng
   map.on("locationfound", function (location) {
-    // console.log(location);
-    // console.log(location.latitude);
-    // console.log(location.longitude);
-
     // Get the coords of current location
-
     var lat = location.latitude;
     var lng = location.longitude;
 
@@ -293,7 +248,7 @@ function clearRoute(clearRouteButton) {
   // If route is not currently drawn, exit the function
   if (!isRouteDrawn) return;
 
-  // If route is drawn,
+  // If route is drawn...
 
   // Remove the routeLine and markers from the map
   if (routeLine) map.removeLayer(routeLine);
@@ -335,12 +290,7 @@ function clearRouteButton() {
 function displayRouteDetails(routeData) {
   var routeDistance = routeData.routes[0].summary.lengthInMeters / 1609.344;
   var routeDuration = routeData.routes[0].summary.travelTimeInSeconds;
-  var arrivalTime = routeData.routes[0].summary.arrivalTime;
-  var departureTime = routeData.routes[0].summary.departureTime;
   var routeDur = $("#routeDur");
-  var routeArrTime = $(`#routeArrTime`);
-  var routeDeepTime = $(`#routeDepTime`);
-
   var duration = moment.duration(routeDuration, "seconds");
   var hours = duration.hours();
   var minutes = duration.minutes();
@@ -348,8 +298,6 @@ function displayRouteDetails(routeData) {
   $("#routeDis").text(`Distance: ${Math.round(routeDistance)} miles`);
 
   routeDur.text(`Duration: ${hours} hours ${minutes} minutes`);
-  // routeArrTime.text("Arrive: " + moment(departureTime).format("h:ss a"));
-  // routeDeepTime.text("Depart: " + moment(arrivalTime).format("h:ss a"));
 }
 
 function trafficMap() {
@@ -369,17 +317,12 @@ function trafficMap() {
     .addTo(map);
 }
 
-var placeHolder = $("#placeholder");
-// console.log(placeHolder);
-
 // Function to search for a location and display the results on the page WHEN a search is completed
 function search() {
   var geocoder = L.Control.geocoder({
     defaultMarkGeocode: false,
   }) // When a location is found, display it on the map and update the page
     .on("markgeocode", function (e) {
-      // console.log(e);
-
       var bbox = e.geocode.bbox;
 
       var poly = L.polygon([bbox.getSouthEast(), bbox.getNorthEast(), bbox.getNorthWest(), bbox.getSouthWest()]).addTo(
@@ -409,7 +352,7 @@ function search() {
 }
 
 function updateAQI(city) {
-  var url = "http://api.waqi.info/feed/";
+  var url = "//api.waqi.info/feed/";
   var url2 = "/?token=2541043dcded3bc723e5446a29135ac1523b1111";
 
   $.get(url + city + url2).then(function (currentData) {
@@ -422,8 +365,6 @@ function updateAQI(city) {
     } else {
       $("#airQualityBox").text("AQI Unavailable");
     }
-
-    // console.log(AQI);
 
     if (AQI <= 50) {
       $("#airQualityBox").text(`${AQI} - Good`);
@@ -465,7 +406,6 @@ var weatherId = $("#weather");
 function displayWeatherIcon(city) {
   $.get(currentURL + `q=${city}`).then(function (currentWeather) {
     weatherRouteData = currentWeather.weather[0].icon;
-    // console.log(weatherRouteData);
     return weatherId.html(`
             <div>
                 <h3><img src="${iconUrl + currentWeather.weather[0].icon + ".png"}" alt="">
@@ -484,10 +424,9 @@ function init() {
   updateCurrentLocation();
   search();
   clearRouteButton();
-  // saveButton();
   trafficMap();
-  // displayWeatherIcon(city);
   modalScreen();
+  // saveButton();
 
   // Click Event, pass in onRouteClick function
   map.on("click", onRouteClick);
@@ -495,19 +434,55 @@ function init() {
 
 init();
 
-//
+//  Saves routeData to localStorage (can be used to draw previous saved routes on the map) - Retrieving from localStorage, to be continued....
 
-var coll = document.getElementsByClassName("collapsible");
-var i;
+// Creates the saveButton on the map to save the current route and location details on click
+// function saveButton() {
+//   var saveButton = L.easyButton({
+//     position: "bottomright",
+//     title: "Save route",
+//     leafletClasses: true,
+//     className: "leaflet-bar leaflet-control",
+//     states: [
+//       {
+//         stateName: "save-route",
+//         icon: "fas fa-save",
+//         title: "Save route",
+//         onClick: function () {
+//           saveRoute(city, country, street, postalCode);
+//         },
+//       },
+//     ],
+//   }).addTo(map);
+// }
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
+// Saves the current route when drawn and location data when the saveButton is clicked
+// function saveRoute(city, country, street, postalCode) {
+//   // If route is not currently drawn, exit the function
+//   if (!isRouteDrawn) return;
+
+//   // console.log(city);
+
+//   // If a route is drawn, get route data or an empty array if there is none
+//   var savedRouteData = JSON.parse(localStorage.getItem("routeData")) || [];
+
+//   // A routeData object to save route and location data to localStorage
+//   var routeData = {
+//     city: city,
+//     country: country,
+//     street: street,
+//     postCode: postalCode,
+//     aqi: AQI,
+//     weather: weatherRouteData,
+//     latlngs: routeLine._latlngs,
+//   };
+
+//   // Add newly saved routeData to the beginning of the savedRouteData array
+//   savedRouteData.unshift(routeData);
+
+//   // And keep only the first 4 elements
+//   savedRouteData = savedRouteData.slice(0, 4);
+
+//   // Save the savedRouteData to localStorage
+//   localStorage.setItem("routeData", JSON.stringify(savedRouteData));
+// }
