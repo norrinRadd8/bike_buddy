@@ -114,6 +114,7 @@ body {
   height: auto !important;
 }
 
+
 /* RESULTS */
 .search {
   margin-left: 10px;
@@ -166,6 +167,7 @@ h3 {
   opacity: 0.5;
   position: fixed;
   top: 0px;
+  display: none;
 }
 #modal1 {
   position: fixed;
@@ -174,6 +176,8 @@ h3 {
   right: 90px;
   padding: 15px;
   border-radius: 5px;
+  display: none;
+  
 }
 #modal2 {
   position: fixed;
@@ -182,6 +186,7 @@ h3 {
   right: 230px;
   padding: 15px;
   border-radius: 5px;
+  display: none;
 }
 #modal3 {
   position: fixed;
@@ -190,6 +195,7 @@ h3 {
   right: 40px;
   padding: 15px;
   border-radius: 5px;
+  display: none;
 }
 #modal4 {
   position: fixed;
@@ -198,6 +204,7 @@ h3 {
   right: 70px;
   padding: 15px;
   border-radius: 5px;
+  display: none;
 }
 #modal5 {
   position: fixed;
@@ -206,6 +213,7 @@ h3 {
   left: 360px;
   padding: 15px;
   border-radius: 5px;
+  display: none;
 }
 #modal1:hover,
 #modal2:hover,
