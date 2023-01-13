@@ -1,189 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <!-- GEOSEARCH SEARCH -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch/leaflet-opencage-geosearch.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-
-    <script src="http://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
-    <script src="./assets/js/leaflet-providers.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <link rel="website icon" type="png" href="assets/images/location_icon.png" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- LEAFLET -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch/leaflet-opencage-geosearch.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@opencage/leaflet-opencage-geosearch"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+  <script src="http://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
+  <script src="/assets/js/leaflet-providers.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+  <!-- FAVICON -->
+  <link rel="website icon" type="png" href="assets/images/location_icon.png" />
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    
+    <!-- PAGE ONE -->
     <main id="page1">
-    <!-- LOGO HEADER -->
-    <div class="jumbotron">
-      <div class="container">
-
-        <div class="row">
-          <header class="col d-flex justify-content-center">
-            
-              <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <header class="col d-flex justify-content-center">
+              <img class="main-logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="Bike Buddy Logo">
             </header>
           </div>
-        </div> 
-      </div>   
-    
-
-    <!-- MAIN SECTION -->
-    <div class="container main" id="main">
-          
-      <div class="row main-section d-flex justify-content-center align-items-center" id="landingPage">
-
-        <div class="col-sm-12 col-md-6">
-          <h1 class ="text">Welcome to BikeBuddy</h1>
-           <p id ="bodyText">We help parents find as safe a place as possible to teach their children cycling on the road.</p>
-           <button type="button" class="btn btn-primary bouncing" id="startedButton">Get Started</button>
-        </div>
-        <div class= "col-sm-12 col-md-6">
-            <img id="landingImage" src="assets/images/Landing Placeholder IMG.png" alt="">
-             
         </div>
       </div>
-  </div>
-</div>
-              </main>
-               <div id ="page2">
-                  
-    <section class ="search" id="search_result">
-      <div class="container-fluid">
-        <div class="row flex-wrap">
-          
-          <div class="results col-sm-12 col-md-3 px-sm-2 px-0">
-            <div class=" d-flex flex-column align-items-center px-3 pt-2 text-white">
-                <h5 id="address_title" class="address">London, United Kingdom</h5>
-                 <p id='address' class="address"></p>
-
-                <button type="button" class="collapsible"><img src ="./assets/images/info.png">&nbsp; &nbsp;   Route Data</button>
-<div class="content">
-  <div id="routeDis"></div>
-  <div id="routeDur"></div>
-  <div id="routeArrTime"></div>
-  <div id="routeDepTime"></div>
-</div>
-
-<!-- Weather Results -->
-<button type="button" class="collapsible"><img src ="./assets/images/cloudy.png">&nbsp; &nbsp;  Weather</button>
-<div class="content">
-  <div id="weatherBox">
-    <div id="weather">
-      <img id="weatherImage" src="">
+      <!-- MAIN SECTION -->
+      <div class="container main" id="main">
+        <div class="row main-section d-flex justify-content-center align-items-center" id="landingPage">
+          <div class="col-sm-12 col-md-6">
+            <h1 class="main-title">Welcome to BikeBuddy</h1>
+            <p class="main-text">We help parents find as safe a place as possible to teach their children cycling on the road.</p>
+            <button type="button" class="start-btn btn btn-primary bouncing" id="startedButton">Get Started</button>
           </div>
-  </div>
-</div>
-
-<!-- Air Quality Results -->
-<button type="button" class="collapsible"><img src ="./assets/images/air.png">&nbsp; &nbsp;  Air Quality</button>
-<div class="content">
-  <div id="airQualityBox">
-  </div>
-</div>
-
-<img id="sideLogo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-                  
+          <div class="col-sm-12 col-md-6">
+            <img id="landingImage" src="assets/images/Landing Placeholder IMG.png" alt="A family of three cycling near a city">
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- PAGE TWO -->
+    <div id="page2">
+      <!-- RESULTS -->
+      <section class="search" id="search_result">
+        <div class="container-fluid">
+          <div class="row flex-wrap">
+            <div class="results col-sm-12 col-md-3 px-sm-2 px-0">
+              <div class=" d-flex flex-column align-items-center px-3 pt-2 text-white">
+                <!-- LOCATION -->
+                <h5 id="address_title" class="address">London, United Kingdom</h5>
+                <p id='address' class="address"></p>
+                <!-- ROUTE DETAILS -->
+                <button type="button" class="collapsible">
+                  <img src="./assets/images/info.png">&nbsp; &nbsp; Route Details</button>
+                <div class="content">
+                  <div id="routeDis"></div>
+                  <div id="routeDur"></div>
+                </div>
+                <!-- WEATHER -->
+                <button type="button" class="collapsible">
+                  <img src="./assets/images/cloudy.png">&nbsp; &nbsp; Weather</button>
+                <div class="content">
+                  <div id="weatherBox">
+                    <div id="weather">
+                      <img id="weatherImage" src="">
+                    </div>
+                  </div>
+                </div>
+                <!-- AIR QUALITY -->
+                <button type="button" class="collapsible">
+                  <img src="./assets/images/air.png">&nbsp; &nbsp; Air Quality</button>
+                <div class="content">
+                  <div id="airQualityBox"></div>
+                </div>
+                <!-- BIKE BUDDY LOGO -->
+                <img id="sideLogo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
+              </div>
+            </div>
+            <!-- MAP -->
+            <div class="mapContainer col-sm-12 col-md-9 pt-3">
+              <div id="map"></div>
             </div>
           </div>
-          <div class="col-sm-12 col-md-9 pt-3">
-            <div id="map"></div>
         </div>
+      </section>
+      <!-- MODALS -->
+      <div id="greyScreen"></div>
+      <div id="modal1">
+        <h5> Search for an area</h5> Click this magnifying glass icon to search for you area and get started
+      </div>
+      <div id="modal2">
+        <h5> Start clicking </h5> Once you have searched click on the 2 points on the map you would like to travel to and from
+      </div>
+      <div id="modal3">
+        <h5> Traffic & Maps</h5> Click on this layer icon to view nearby traffic incidents and change the style of your map
+      </div>
+      <div id="modal4">
+        <h5> Delete & Start Again</h5> If you would like to create a new route click the trash icon to start again
+      </div>
+      <div id="modal5">
+        <h5> Route information</h5> Click on any of these buttons to reveal more information about your search area
+      </div>
+      <!-- SCROLL TIPS -->
+      <footer class="scroll_sec">
+        <div class="scroll_tips">
+          <h4> BikeBuddy Cycle Tips: 
+            <img class="icon" src="assets/images/bicycle.png" /> Dont cycle down stairs! 
+            <img class="icon" src="assets/images/bicycle.png" /> Keep 2 hands on the wheel! 
+            <img class="icon" src="assets/images/bicycle.png" /> Always wear a helmet! 
+            <img class="icon" src="assets/images/bicycle.png" /> Use lights when cycling at night! 
+            <img class="icon" src="assets/images/bicycle.png" /> Park your bike responsibily! 
+            <img class="icon" src="assets/images/bicycle.png" /> Listen to your parents! 
+            <img class="icon" src="assets/images/bicycle.png" />
+          </h4>
         </div>
-      </div>
-    </section> 
-
-
-    <!-- Scrolling Tips -->
-
-<div id="greyScreen"></div>
-
-<div id="modal1">
-  <h5> Search for an area</h5>
-  Click this magnifying glass icon to search for you area and get started
-</div>
-
-<div id="modal2">
-  <h5> Start clicking </h5>
-  Once you have searched click on the 2 points on the map you 
-  would like to travel to and from
-</div>
-
-<div id="modal3">
-  <h5> Traffic & Maps</h5>
-  Click on this layer icon to view nearby traffic incidents and change the style of your map
-</div>
-
-<div id="modal4">
-  <h5> Delete & Start Again</h5>
- If you would like to create a new route click the trash icon to start again
-</div>
-
-<div id="modal5">
-  <h5> Route information</h5>
- Click on any of these buttons to reveal more information about your search area
-</div>
-
-
-
-               <!-- <div class="images">
-                  <img class="cyclist" src="assets/images/Cyclist.png" alt="" />
-                  <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="">
-                </div>
-              </div>
-              
-
-          <div class="col-10">
-            <div id="map"></div>
-            <div class="pointer"></div>
-            <button id="current_location"><img src="" alt="" /></button>
-          </div>
-        </div>  
-          
-      </div>  -->
-    
-            
-
-           <!-- <div id="traffic_safety_rating">Traffic Safety Rating</div>
-            <div id="aqi"></div>
-            <div id="weather">Weather</div>
-            <img class="main_logo" src="assets/images/BIKEBUDDY LOGO WHITE.png" alt="" />
-          </div> -->
-
-          
-
-
-    <section class="scroll_sec">
-      <div class="scroll_tips">
-        <h4>
-          BikeBuddy Cycle Tips:
-          <img class="icon" src="assets/images/bicycle.png" /> Dont cycle down stairs!
-          <img class="icon" src="assets/images/bicycle.png" /> Keep 2 hands on the wheel!
-          <img class="icon" src="assets/images/bicycle.png" /> Always wear a helmet!
-          <img class="icon" src="assets/images/bicycle.png" /> Use lights when cycling at night!
-          <img class="icon" src="assets/images/bicycle.png" /> Park your bike responsibily!
-          <img class="icon" src="assets/images/bicycle.png" /> Listen to your parents!
-          <img class="icon" src="assets/images/bicycle.png" />
-        </h4>
-      </div>
-    </section>
-  </div>
-
-    <!-- Leaflet Library --> 
-    <script
-      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-      crossorigin=""
-    ></script>
+      </footer>
+    </div>
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <!-- Traffic & Layered Maps Plugins-->
     <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=IMlod8ggPRkM6P7VpNnHHngWikubfqXC"></script>
     <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=IMlod8ggPRkM6P7VpNnHHngWikubfqXC"></script>
@@ -193,14 +131,12 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
     <!-- Polyline Animation -->
     <script src="https://unpkg.com/leaflet.polyline.snakeanim@0.2.0/L.Polyline.SnakeAnim.js"></script>
-    <!-- JQuery CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Search -->
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <!-- JQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Moment JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"
-    integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- App.js -->
     <script src="assets/js/app.js"></script>
   </body>

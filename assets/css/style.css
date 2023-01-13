@@ -1,5 +1,7 @@
+/* FONT */
 @import url("https://fonts.googleapis.com/css2?family=Saira&display=swap");
 
+/* || ANIMATIONS */
 @keyframes bouncing {
   0%,
   100%,
@@ -15,203 +17,37 @@
     transform: translateY(-10px);
   }
 }
+@keyframes scrolling {
+  0% {
+    transform: translate(95%);
+  }
+  100% {
+    transform: translate(-100%);
+  }
+}
+
+/* || RESETS */
 * {
   box-sizing: border-box;
 }
-
 html,
 body {
   width: 100%;
   height: 100%;
 }
 
+/* || GLOBAL */
 body {
   background-image: url("../images/Background.png");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
-  font-family: "Saira";
+  font-family: "Saira", sans-serif;
 }
-
-.main_logo {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  width: 360px;
-  height: 44px;
-}
-
-h1 {
-  font-size: 65px;
-}
-
-#landingImage {
-  /* margin-top: 60px; */
-  /* margin-bottom: 60px; */
-  width: 80% !important;
-  height: auto !important;
-}
-
-.btn {
-  width: 175px !important;
-  height: 57px;
-  background-color: #e87308 !important;
-  margin-top: 10px !important;
-  animation-name: bouncing !important;
-  animation-iteration-count: infinite !important;
-  animation-duration: 2s;
-}
-
-.btn:hover {
-  background-color: #e89446 !important;
-  animation: none;
-}
-
-/* #startedButton{
-
-} */
-
-.cyclist {
-  width: 40%;
-  margin-top: 30px;
-  margin-left: 50px;
-}
-
-#map {
-  height: 90vh;
-  border-radius: 5px;
-  /* width: 84%; */
-}
-
 .container {
   margin-bottom: 100px;
 }
-
-.col-6 .main_logo {
-  height: 220px;
-  width: 400px;
-  margin-top: 20px;
-}
-
-.col-4 {
-  margin-top: 80px;
-}
-.text {
-  color: white;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 64;
-}
-
-p {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 31px;
-  color: white;
-  margin-top: 30px;
-}
-
-.col-4 .btn {
-  background-color: orange;
-  color: white;
-  margin-top: 50px;
-}
-
-.routes {
-  background-color: #006db0;
-  border-radius: 124px;
-  height: 617px;
-  width: 1278px;
-}
-
-.popular_routes {
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
-.dots {
-  color: #ffffff;
-  margin-bottom: 50px;
-}
-.popular {
-  color: #ffffff;
-  margin-bottom: 30px;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 110.9%;
-}
-
-.col-6 .card {
-  width: 150px;
-  height: 246px;
-  border-radius: 65px;
-}
-
-.col-6 .main_logo {
-  width: 605px;
-  height: 388px;
-}
-
-.col-2 .btn {
-  background-color: #006db0;
-  width: 160px;
-}
-
-.images .main_logo {
-  width: 80%;
-}
-
-.dropdown_menu {
-  width: 100%;
-}
-
-.search {
-  margin-left: 10px;
-}
-
-.col-12 {
-  width: 1440px;
-  height: 23px;
-  left: 0px;
-  top: 0px;
-
-  background: #1285cc;
-}
-
-.address {
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-.dropdown .btn {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 25px;
-  text-align: center;
-  background-color: #1285cc;
-  color: #ffffff;
-  width: 150px;
-  margin: 10px;
-}
-
-.results {
-  background: linear-gradient(#0c639b, #2e85cc);
-  /* height: 90vh; */
-  margin-top: 15px;
-  border-radius: 5px;
-}
-
-.images .main_logo {
-  margin-top: 10px;
-  width: 200px;
-  height: 25px;
-}
-
-/*  */
-
-/* Style the button that is used to open and close the collapsible content */
 .collapsible {
   background-color: #1285cc;
   color: white;
@@ -226,14 +62,10 @@ p {
   margin: 10px 0px 0px 0px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active,
 .collapsible:hover {
   background-color: #137dbe;
 }
-
-/* Style the collapsible content. Note: hidden by default */
 .content {
   padding: 0 18px;
   display: none;
@@ -245,16 +77,71 @@ p {
   margin-top: -8px;
 }
 
-/*  */
+/* || CUSTOM STYLES */
+/* HEADER */
+.main-logo {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  width: 360px;
+  height: 44px;
+}
 
-/* #weatherBox{
- 
-} */
+/* MAIN SECTION */
+.main-title {
+  color: white;
+}
+.main-text {
+  font-size: 20px;
+  line-height: 31px;
+  color: white;
+  margin-top: 30px;
+}
+.start-btn {
+  width: 175px !important;
+  height: 57px;
+  background-color: #e87308 !important;
+  margin-top: 10px !important;
+  animation-name: bouncing !important;
+  animation-iteration-count: infinite !important;
+  animation-duration: 2s;
+}
+.start-btn:hover {
+  background-color: #e89446 !important;
+  animation: none;
+}
+#landingImage {
+  width: 80% !important;
+  height: auto !important;
+}
 
+/* RESULTS */
+.search {
+  margin-left: 10px;
+}
+
+/* LOCATION */
+.address {
+  margin-top: 20px;
+  font-size: 16px;
+}
+.address-text {
+  font-size: 16px;
+  line-height: 31px;
+  color: white;
+  margin-top: 30px;
+}
+.results {
+  background: linear-gradient(#0c639b, #2e85cc);
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+/* WEATHER */
 h3 {
   font-size: 16px;
 }
 
+/* BIKE BUDDY LOGO */
 #sideLogo {
   width: 160px;
   position: fixed;
@@ -265,74 +152,13 @@ h3 {
   cursor: pointer;
 }
 
-/* Scroll Animation */
-
-.scroll_sec {
-  position: fixed;
-  width: 100%;
-  height: 2.75vh;
-  display: flex;
-  overflow: hidden;
-  bottom: 1px;
+/* MAP */
+#map {
+  height: 90vh;
+  border-radius: 5px;
 }
 
-.scroll_tips {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  color: white;
-}
-
-/* animate for 30 seconds on a loop */
-h4 {
-  position: absolute;
-  /* white-space: nowrap; */
-  animation: animate 30s linear infinite;
-  font-size: 14px !important;
-}
-
-.icon {
-  /*scale image as mirror so reversed icon facing left not right*/
-  height: 2rem;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-
-@keyframes animate {
-  /* animation starting point 5% of length visable at start, 100% not visable by end */
-  0% {
-    transform: translate(95%);
-  }
-
-  100% {
-    transform: translate(-100%);
-  }
-}
-
-/* unsure */
-
-#mapSearchContainer {
-  position: fixed;
-  top: 20px;
-  right: 40px;
-  height: 30px;
-  width: 180px;
-  z-index: 110;
-  font-size: 10pt;
-  color: #0e0d0d;
-  border: solid 1px #bbb;
-  background-color: #f8f8f8;
-}
-
-.pointer {
-  position: absolute;
-  top: 86px;
-  left: 60px;
-  z-index: 99999;
-}
-
-/* Modals */
-
+/* MODALS */
 #greyScreen {
   background-color: grey;
   height: 100%;
@@ -341,7 +167,6 @@ h4 {
   position: fixed;
   top: 0px;
 }
-
 #modal1 {
   position: fixed;
   background-color: #fefefe;
@@ -350,7 +175,6 @@ h4 {
   padding: 15px;
   border-radius: 5px;
 }
-
 #modal2 {
   position: fixed;
   background-color: #fefefe;
@@ -359,7 +183,6 @@ h4 {
   padding: 15px;
   border-radius: 5px;
 }
-
 #modal3 {
   position: fixed;
   background-color: #fefefe;
@@ -368,7 +191,6 @@ h4 {
   padding: 15px;
   border-radius: 5px;
 }
-
 #modal4 {
   position: fixed;
   background-color: #fefefe;
@@ -377,7 +199,6 @@ h4 {
   padding: 15px;
   border-radius: 5px;
 }
-
 #modal5 {
   position: fixed;
   background-color: #fefefe;
@@ -386,65 +207,76 @@ h4 {
   padding: 15px;
   border-radius: 5px;
 }
-
 #modal1:hover,
 #modal2:hover,
 #modal3:hover,
 #modal4:hover,
 #modal5:hover {
   background-color: #ececec;
+  cursor: pointer;
 }
 
-/* Media Queries */
+/* SCROLL TIPS */
+.scroll_sec {
+  position: fixed;
+  width: 100%;
+  height: 2.75vh;
+  display: flex;
+  overflow: hidden;
+  bottom: 1px;
+}
+.scroll_tips {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: white;
+}
+h4 {
+  position: absolute;
+  animation: scrolling 30s linear infinite;
+  font-size: 14px !important;
+}
+.icon {
+  height: 2rem;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
 
-/* Laptop */
+/* || MEDIA QUERIES */
+/* LARGE */
 @media screen and (max-width: 1600px) and (min-device-width: 900px) {
-  .main_logo {
+  .main-logo {
     margin-top: 60px;
     margin-bottom: 0px;
     width: 360px;
     height: 44px;
   }
-
-  h1 {
+  .main-title {
     font-size: 40px;
   }
-
-  #bodyText {
+  .main-text {
     font-size: 15px;
   }
-
-  #landingPage {
-    /* display: flex; */
-    /* align-items: center !important; */
-  }
-
   #landingImage {
-    /* margin-top: 60px;
-    margin-bottom: 60px; */
     width: 100% !important;
   }
-
   .scroll_sec {
     height: 3.75vh;
   }
 }
 
-/* Mobile */
-
+/* MEDIUM */
 @media only screen and (max-width: 768px) {
-  .main_logo {
+  .main-logo {
     margin-top: 60px;
     margin-bottom: 60px;
     width: 260px;
     height: auto;
   }
-
   #landingPage {
     scale: 0.7;
     margin-top: -180px;
   }
-
   #landingImage {
     margin-top: 60px;
     margin-bottom: 60px;
@@ -453,51 +285,34 @@ h4 {
     top: -470px;
     left: -100px;
   }
-  /* 
-   .col-4 {
-    position: relative;
-    bottom: -200px;
-    width: 400px;
-  }   */
-  /* * .d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 {
-    display: none !important;
-  } */
-
   #map {
     height: 50vh;
     margin: 0px 10px;
   }
-
+  .results {
+    background: transparent;
+  }
+  .content {
+    font-size: 13px;
+  }
+  #address {
+    margin: 0;
+  }
   #address_title {
     margin: 10px;
     font-size: 16px;
   }
-
-  #address {
-    margin: 0;
-  }
-
-  .content {
-    font-size: 13px;
-  }
-
   h3 {
     font-size: 13px;
   }
   h3 img {
     display: none;
   }
-
-  .scroll_sec {
-    display: none;
-  }
-
   #sideLogo {
     scale: 0.6;
     bottom: 10px;
   }
-
-  .results {
-    background: transparent;
+  .scroll_sec {
+    display: none;
   }
 }

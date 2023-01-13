@@ -100,19 +100,19 @@ SO THAT I can have peace of mind while they are cycling on the road
 
 Bike Buddy is the ultimate tool for parents and guardians looking to keep their children safe while cycling. With its interactive map, families can easily search for a location and plot a safe route. This takes into account various factors such as live traffic levels, available bicycle lanes, and lowest elevation to ensure the most efficient and safest route possible for children on the roads.
 
-But Bike Buddy doesn't stop there - it also provides real-time updates on air quality and weather conditions, so users can stay informed and prepared for their ride. Users have the ability to view their current location and with Bike Buddy, families can confidently enjoy biking together on the safest roads available.
+But Bike Buddy doesn't stop there - it also provides real-time updates on air quality, weather conditions, traffic-flow and traffic incidents, so users can stay informed and prepared for their ride. Users have the ability to view their current location and with Bike Buddy, families can confidently enjoy biking together on the safest roads available.
 
 Say goodbye to repetitive tutorials - our modals tutorial for using the map automatically saves your progress to localStorage, ensuring that you never have to complete it again.
 
 ### APIs
 
-Bike Buddy is powered by four APIs - TomTom Routing, TomTom Reverse Geocoding, OpenWeatherMap, and AQI (Air Quality Index) - to deliver top-notch information and optimised routes to its users. In addition to these APIs, Bike Buddy also utilises the Leaflet.js library and the Jawg Maps Tile API to provide an interactive and visually appealing map experience. These technologies ensure cycling safety and convenience.
+Bike Buddy is powered by four main APIs - TomTom Routing, TomTom Reverse Geocoding, OpenWeatherMap, and AQI (Air Quality Index) - to deliver top-notch information and optimised routes to its users. In addition to these APIs, Bike Buddy also utilises the Leaflet.js library, the Jawg Maps Tile API & MapQuest Tile API to provide an interactive and visually appealing map experience. These technologies ensure cycling safety and convenience.
 
 ### Design
 
 The design of this app was intended to be child-friendly whilst also appealing to adults & parents. So for the colour scheme a sky blue was chosen as the primary, this colour is friendly yet not too corporate, it's easy on the eyes and still appealing to children. For the vector images we chose to show a family cycling together to solidify to the user what this app is based around. The logo was modified to ensure the letters have a slightly fun and quirky feel to them.
 
-Users are initially greeted with a landing page to give a brief description of what bikebuddy actually is. From there they go straight to the map dashboard screen. Because the user may not be familiar with our app and because it has some different features to traditional navigation maps we include a modal tutorial to guide the user through our main features.
+Users are initially greeted with a landing page to give a brief description of what Bike Buddy actually is. From there they go straight to the map dashboard screen. Because the user may not be familiar with our app and because it has some different features to traditional navigation maps we include a modal tutorial to guide the user through our main features.
 
 Because this is a family based-app we wanted to include numerous features to help with the safety of the user. So it was decided that enxt to the map would be various buttons the user could explore to find out information such as traffic flow/ nearby traffic incidents, the air quality of the area. Not to mention general biking safety tips that display at the bottom of the screen.
 
