@@ -225,6 +225,7 @@ function updateCurrentLocation() {
   var locateControl = L.control
     .locate({
       position: "topright",
+      iconUrl: "assets/images/marker-green.png",
       strings: {
         title: "Show current location",
       },
