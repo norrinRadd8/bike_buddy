@@ -168,7 +168,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-This application is not for commercial use.
+This application may not be edited or re-distributed commercially.
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
